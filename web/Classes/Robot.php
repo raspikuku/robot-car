@@ -12,7 +12,7 @@ class Robot
 
 	private $gpioCmd = '/usr/local/bin/gpio -g';
 
-	public $sleepTime = 1000000;
+	public $sleepTime = 300000;
 
 	public function __construct()
 	{
