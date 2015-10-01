@@ -1,3 +1,20 @@
 .btn-control {
 	height: 5em;
 }
+
+#debugConsole {
+	background-color: #0f0f0f;
+	font-family: monospace;
+	height:200px;
+	overflow:scroll;
+}
+
+#debugConsole p {
+	padding: 0;
+	margin: 0;
+	color: greenyellow;
+}
+
+#debugConsole p.error {
+	color: red;
+}
