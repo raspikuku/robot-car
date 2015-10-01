@@ -63,7 +63,7 @@ $(document).ready(function () {
 		var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
 		if(data.performed){
-			$('#debugContainer').prepend('<p>' + time + ' ' + data.performed + '</p>');
+			$('#debugConsole').prepend('<p>' + time + ' ' + data.performed + '</p>');
 		}
 
 		if(data.error){
