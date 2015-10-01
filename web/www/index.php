@@ -45,47 +45,6 @@
 	</div>
 </div>
 <script src="js/jquery-2.1.4.min.js"></script>
-<script>
-	$(document).ready(function () {
-
-		$('#fwd').click(function () {
-			$.post("robot.php?action=fwd", function (data) {
-				parseResponse(data);
-			});
-		});
-
-		$('#rev').click(function () {
-			$.post("robot.php?action=rev", function (data) {
-				parseResponse(data);
-			});
-		});
-
-		$('#left').click(function () {
-			$.post("robot.php?action=left", function (data) {
-				parseResponse(data);
-			});
-		});
-
-		$('#right').click(function () {
-			$.post("robot.php?action=right", function (data) {
-				parseResponse(data);
-			});
-		});
-
-		function parseResponse(data){
-			data = $.parseJSON(data);
-			console.log(data);
-
-			if(data.message){
-				$('#debugContainer').prepend('<p>' + data.message + '</p>');
-			}
-
-			if(data.error){
-				$('#debugConsole').prepend('<p class="error">' + data.error + '</p>');
-				console.log(data.error);
-			}
-		}
-	});
-</script>
+<script src="js/robot-car.js"></script>
 </body>
 </html>
