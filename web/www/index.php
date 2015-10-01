@@ -43,7 +43,14 @@ try
 <div class="container">
 	<h1>RobotCar</h1>
 
+
 	<form method="post">
+
+		<div class="row">
+			<div class="col-xs-12">
+				<img src="http://192.168.0.105:8081/?action=stream" width="320" height="240" />
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-xs-6">
