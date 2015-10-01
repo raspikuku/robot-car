@@ -62,8 +62,8 @@ $(document).ready(function () {
 		var d = new Date();
 		var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
-		if(data.message){
-			$('#debugContainer').prepend('<p>' + time + ' ' + data.message + '</p>');
+		if(data.action){
+			$('#debugContainer').prepend('<p>' + time + ' ' + data.action + '</p>');
 		}
 
 		if(data.error){

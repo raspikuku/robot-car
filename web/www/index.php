@@ -14,7 +14,7 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<img src="http://192.168.0.105:8081/?action=stream" width="320" height="240" />
+			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 		</div>
 	</div>
 	<div class="row">
