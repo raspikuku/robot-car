@@ -13,7 +13,7 @@ include '../Classes/Robot.php';
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 
 $response = new stdClass;
-$response->action = '';
+$response->performed = '';
 $response->error = '';
 
 try
@@ -24,22 +24,22 @@ try
 	{
 		case 'fwd' :
 			$robot->fwd();
-			$response->action = 'Forward';
+			$response->performed = 'Forward';
 		break;
 		case 'rev' :
 			$robot->rev();
-			$response->action = 'Reverse';
+			$response->performed = 'Reverse';
 		break;
 		case 'left' :
 			$robot->left();
-			$response->action = 'Left';
+			$response->performed = 'Left';
 		break;
 		case 'right' :
 			$robot->right();
-			$response->action = 'Right';
+			$response->performed = 'Right';
 		break;
 		default :
-			$response->action = '**UNKNOWN**';
+			$response->performed = '**NOTHING**';
 		break;
 	}
 } catch (Exception $exception)

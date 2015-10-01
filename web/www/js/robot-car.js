@@ -6,7 +6,7 @@ $(document).ready(function () {
 	var intervalId;
 
 	$("#fwd").mousedown(function() {
-		sendRequest('fwd')
+		sendRequest('fwd');
 		intervalId = setInterval(function () {
 			sendRequest('fwd')
 		}, 500);
@@ -17,7 +17,7 @@ $(document).ready(function () {
 	});
 
 	$('#rev').mousedown(function() {
-		sendRequest('rev')
+		sendRequest('rev');
 		intervalId = setInterval(function () {
 			sendRequest('rev')
 		}, 500);
@@ -28,7 +28,7 @@ $(document).ready(function () {
 	});
 
 	$('#left').mousedown(function() {
-		sendRequest('left')
+		sendRequest('left');
 		intervalId = setInterval(function () {
 			sendRequest('left')
 		}, 500);
@@ -39,7 +39,7 @@ $(document).ready(function () {
 	});
 
 	$('#right').mousedown(function() {
-		sendRequest('right')
+		sendRequest('right');
 		intervalId = setInterval(function () {
 			sendRequest('right')
 		}, 500);
@@ -62,13 +62,12 @@ $(document).ready(function () {
 		var d = new Date();
 		var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
-		if(data.action){
-			$('#debugContainer').prepend('<p>' + time + ' ' + data.action + '</p>');
+		if(data.performed){
+			$('#debugContainer').prepend('<p>' + time + ' ' + data.performed + '</p>');
 		}
 
 		if(data.error){
 			$('#debugConsole').prepend('<p class="error">' + time + ' ' + data.error + '</p>');
-			console.log(data.error);
 		}
 	}
 });
