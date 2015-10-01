@@ -50,7 +50,7 @@ $(document).ready(function () {
 	});
 
 	function sendRequest(action) {
-		$.post('robot.php?action=' + action, function (data) {
+		$.post('robot.php', { action: action}, function (data) {
 			parseResponse(data);
 		});
 	}
