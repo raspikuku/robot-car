@@ -22,28 +22,28 @@ class Robot
 		}
 	}
 
-	public function fwd()
+	public function rev()
 	{
 		$this->set([1, 0, 1, 0]);
 		usleep($this->sleepTime);
 		$this->stop();
 	}
 
-	public function rev()
+	public function fwd()
 	{
 		$this->set([0, 1, 0, 1]);
 		usleep($this->sleepTime);
 		$this->stop();
 	}
 
-	function left()
+	function right()
 	{
 		$this->set([1, 0, 0, 1]);
 		usleep($this->sleepTime);
 		$this->stop();
 	}
 
-	function right()
+	function left()
 	{
 		$this->set([0, 1, 1, 0]);
 		usleep($this->sleepTime);
