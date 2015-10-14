@@ -56,7 +56,7 @@ $(document).ready(function () {
 	$("#sld_cam_hor" ).slider({
 		value: 50,
 		slide: function(event, ui) {
-			moveCam('hor', ui.value)
+			moveCam('hor', 100 - ui.value)
 		}
 	});
 
