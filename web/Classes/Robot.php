@@ -60,6 +60,8 @@ class Robot
 		$dir = ($direction == 'hor') ? 1 : 0;
 
 		$this->servo($dir, $position);
+
+		return $dir . ' / ' . $position;
 	}
 	private function set($values)
 	{

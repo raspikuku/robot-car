@@ -42,6 +42,8 @@ try
 			$direction = isset($_POST['direction']) ? $_POST['direction'] : '';
 			$position = isset($_POST['position']) ? $_POST['position'] : '';
 
+			$response->performed = $robot->camera($direction, $position);
+
 			break;
 		default :
 			$response->performed = '**NOTHING**';
