@@ -18,8 +18,10 @@
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 		</div>
 		<div class="col-xs-6">
-			<div id="sld_cam_hor"></div>
-			<div id="sld_cam_ver"></div>
+			<div style="width: 240px; height: 240px;">
+				<div id="sld_cam_hor"></div>
+				<div style="height: 200px;" id="sld_cam_ver"></div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
@@ -29,7 +31,7 @@
 			</button>
 			<br />
 			<button class="btn btn-lg btn-block btn-inverse btn-control" id="stop">
-				<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			</button>
 			<br />
 			<button class="btn btn-lg btn-block btn-danger btn-control" id="rev">

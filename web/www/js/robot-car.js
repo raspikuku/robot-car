@@ -54,6 +54,7 @@ $(document).ready(function () {
 	});
 
 	$("#sld_cam_hor" ).slider({
+		value: 50,
 		slide: function(event, ui) {
 			console.log(ui.value);
 			moveCam('hor', ui.value)
@@ -61,9 +62,10 @@ $(document).ready(function () {
 	});
 
 	$( "#sld_cam_ver" ).slider({
+		value: 50,
 		orientation: "vertical",
 		slide: function(event, ui) {
-			console.log(ui.value);
+			console.log(100 - ui.value);
 			moveCam('ver', ui.value)
 		}
 	});
