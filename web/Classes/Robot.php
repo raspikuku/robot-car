@@ -49,11 +49,18 @@ class Robot
 		usleep($this->sleepTime);
 		$this->stop();
 	}
+
 	function stop()
 	{
 		$this->set([0, 0, 0, 0]);
 	}
 
+	public function camera($direction, $position)
+	{
+		$dir = ($direction == 'hor') ? 1 : 0;
+
+		$this->servo($dir, $position);
+	}
 	private function set($values)
 	{
 		foreach($this->pins as $i => $pin)
@@ -67,6 +74,22 @@ class Robot
 		$output = trim(shell_exec($this->gpioCmd . ' ' . $command . ' 2>&1'));
 
 		if ($output && !$expectReturn)
+		{
+			throw new UnexpectedValueException($output);
+		}
+
+		return $output;
+	}
+
+	private function servo($number, $position)
+	{
+		$output = trim(shell_exec(sprintf(
+				'echo %d=%d% > /dev/servoblaster 2>&1',
+				(int)$number,
+				(int)$position
+				)));
+
+		if ($output)
 		{
 			throw new UnexpectedValueException($output);
 		}

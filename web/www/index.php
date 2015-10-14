@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>RobotCar</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/jquery-ui.css" rel="stylesheet">
 	<link href="css/robot-car.css" rel="stylesheet">
 </head>
 <body>
@@ -13,13 +14,21 @@
 	<h1>RobotCar</h1>
 
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-xs-6">
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
+		</div>
+		<div class="col-xs-6">
+			<div id="sld_cam_hor"></div>
+			<div id="sld_cam_ver"></div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-6">
 			<button class="btn btn-lg btn-block btn-success btn-control" id="fwd">
+				<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+			</button>
+			<br />
+			<button class="btn btn-lg btn-block btn-inverse btn-control" id="stop">
 				<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 			</button>
 			<br />
@@ -45,6 +54,7 @@
 	</div>
 </div>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script src="js/robot-car.js"></script>
 </body>
 </html>

@@ -38,6 +38,11 @@ try
 			$robot->right();
 			$response->performed = 'Right';
 		break;
+		case 'cam':
+			$direction = isset($_POST['direction']) ? $_POST['direction'] : '';
+			$position = isset($_POST['position']) ? $_POST['position'] : '';
+
+			break;
 		default :
 			$response->performed = '**NOTHING**';
 		break;

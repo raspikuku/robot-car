@@ -49,8 +49,35 @@ $(document).ready(function () {
 		clearInterval(intervalId);
 	});
 
+	$('#stop').mousedown(function() {
+		sendRequest('stop');
+	});
+
+	$("#sld_cam_hor" ).slider({
+		slide: function(event, ui) {
+			console.log(ui.value);
+			moveCam('hor', ui.value)
+		}
+	});
+
+	$( "#sld_cam_ver" ).slider({
+		orientation: "vertical",
+		slide: function(event, ui) {
+			console.log(ui.value);
+			moveCam('ver', ui.value)
+		}
+	});
+
 	function sendRequest(action) {
 		$.post('robot.php', { action: action}, function (data) {
+			parseResponse(data);
+		});
+	}
+
+	function moveCam(direction, position) {
+		$.post('robot.php', {
+			action: 'cam', direction: direction, position: position
+		}, function (data) {
 			parseResponse(data);
 		});
 	}
