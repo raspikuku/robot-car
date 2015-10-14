@@ -86,7 +86,7 @@ class Robot
 	private function servo($number, $position)
 	{
 		$output = trim(shell_exec(sprintf(
-				'echo %d=%d% > /dev/servoblaster 2>&1',
+				'echo %d=%d%% > /dev/servoblaster 2>&1',
 				(int)$number,
 				(int)$position
 				)));
