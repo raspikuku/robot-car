@@ -53,19 +53,24 @@ $(document).ready(function () {
 		sendRequest('stop');
 	});
 
-	$("#sld_cam_hor" ).slider({
+	$("#sld_cam_hor").slider({
 		value: 50,
 		slide: function(event, ui) {
 			moveCam('hor', 100 - ui.value)
 		}
 	});
 
-	$( "#sld_cam_ver" ).slider({
+	$("#sld_cam_ver").slider({
 		value: 50,
 		orientation: "vertical",
 		slide: function(event, ui) {
 			moveCam('ver', 100 - ui.value)
 		}
+	});
+
+	$('#cam_center').click(function() {
+		$("#sld_cam_hor").slider("option", "value", 50);
+		$("#sld_cam_ver").slider("option", "value", 50);
 	});
 
 	function sendRequest(action) {

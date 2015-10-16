@@ -17,11 +17,14 @@
 		<div class="col-xs-6">
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-5">
 			<div style="width: 240px; height: 240px;">
 				<div id="sld_cam_hor"></div>
 				<div style="height: 200px;" id="sld_cam_ver"></div>
 			</div>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-default" id="cam_center">Center</button>
 		</div>
 	</div>
 	<div class="row">
