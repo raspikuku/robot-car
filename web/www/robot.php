@@ -47,8 +47,11 @@ try
 			$position = isset($_POST['position']) ? $_POST['position'] : '';
 
 			$response->performed = $robot->camera($direction, $position);
-
-			break;
+		break;
+		case 'poweroff':
+			$robot->poweroff();
+			$response->performed = 'POWEROFF';
+		break;
 		default :
 			$response->performed = '**NOTHING**';
 		break;

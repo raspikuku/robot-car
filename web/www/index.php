@@ -14,8 +14,11 @@
 	<h1>RobotCar</h1>
 
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-xs-5">
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-default" id="cam_center">Center</button>
 		</div>
 		<div class="col-xs-5">
 			<div style="width: 240px; height: 240px;">
@@ -24,7 +27,7 @@
 			</div>
 		</div>
 		<div class="col-xs-1">
-			<button class="btn btn-default" id="cam_center">Center</button>
+			<button class="btn btn-danger" id="poweroff">Poweroff</button>
 		</div>
 	</div>
 	<div class="row">

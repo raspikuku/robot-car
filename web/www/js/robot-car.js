@@ -75,6 +75,10 @@ $(document).ready(function () {
 		moveCam('ver', 50);
 	});
 
+	$('#poweroff').click(function() {
+		sendRequest('poweroff')
+	});
+
 	function sendRequest(action) {
 		$.post('robot.php', { action: action}, function (data) {
 			parseResponse(data);

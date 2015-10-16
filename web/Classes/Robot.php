@@ -64,6 +64,11 @@ class Robot
 		return $dir . ' / ' . $position;
 	}
 
+	public function poweroff()
+	{
+		return $this->shellExec('sudo poweroff');
+	}
+
 	private function set($values)
 	{
 		foreach($this->pins as $i => $pin)
@@ -86,6 +91,12 @@ class Robot
 
 	private function servo($number, $position)
 	{
+		return $this->shellExec(sprintf(
+				'echo %d=%d%% > /dev/servoblaster 2>&1',
+				(int)$number,
+				(int)$position
+		));
+
 		$output = trim(shell_exec(sprintf(
 				'echo %d=%d%% > /dev/servoblaster 2>&1',
 				(int)$number,
@@ -93,6 +104,18 @@ class Robot
 				)));
 
 		if ($output)
+		{
+			throw new UnexpectedValueException($output);
+		}
+
+		return $output;
+	}
+
+	private function shellExec($command, $expectReturn = false)
+	{
+		$output = trim(shell_exec($command . ' 2>&1'));
+
+		if ($output && !$expectReturn)
 		{
 			throw new UnexpectedValueException($output);
 		}
