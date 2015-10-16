@@ -71,6 +71,8 @@ $(document).ready(function () {
 	$('#cam_center').click(function() {
 		$("#sld_cam_hor").slider("option", "value", 50);
 		$("#sld_cam_ver").slider("option", "value", 50);
+		moveCam('hor', 50);
+		moveCam('ver', 50);
 	});
 
 	function sendRequest(action) {
