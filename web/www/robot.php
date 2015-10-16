@@ -22,6 +22,10 @@ try
 
 	switch ($action)
 	{
+		case 'stop' :
+			$robot->stop();
+			$response->performed = 'STOP';
+		break;
 		case 'fwd' :
 			$robot->fwd();
 			$response->performed = 'Forward';

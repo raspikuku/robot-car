@@ -25,29 +25,29 @@ class Robot
 	public function rev()
 	{
 		$this->set([1, 0, 1, 0]);
-		usleep($this->sleepTime);
-		$this->stop();
+		//usleep($this->sleepTime);
+		//$this->stop();
 	}
 
 	public function fwd()
 	{
 		$this->set([0, 1, 0, 1]);
-		usleep($this->sleepTime);
-		$this->stop();
+		//usleep($this->sleepTime);
+		//$this->stop();
 	}
 
 	function right()
 	{
 		$this->set([1, 0, 0, 1]);
-		usleep($this->sleepTime);
-		$this->stop();
+		//usleep($this->sleepTime);
+		//$this->stop();
 	}
 
 	function left()
 	{
 		$this->set([0, 1, 1, 0]);
-		usleep($this->sleepTime);
-		$this->stop();
+		//usleep($this->sleepTime);
+		//$this->stop();
 	}
 
 	function stop()
@@ -63,6 +63,7 @@ class Robot
 
 		return $dir . ' / ' . $position;
 	}
+
 	private function set($values)
 	{
 		foreach($this->pins as $i => $pin)
