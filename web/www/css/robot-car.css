@@ -25,3 +25,16 @@ body {
 #sld_cam_hor {
 	margin-bottom: 50px;
 }
+
+#radar{
+	position:relative;
+	width:321px;
+	height:321px;
+	background:#222 url(../img/radar.png);
+	border-radius:320px;
+}
+#rad{
+	position:absolute;
+	width:321px;
+	height:321px; background:url(../img/rad.png);
+}

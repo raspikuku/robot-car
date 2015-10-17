@@ -19,20 +19,16 @@
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 		</div>
 		<div class="col-xs-4">
-			<div style="border: 1px dashed silver; height: 240px;"></div>
+			<div id="radar">
+				<div id="rad"></div>
+			</div>
 		</div>
 		<div class="col-xs-3">
 			<div id="sld_cam_hor"></div>
 			<button class="btn btn-default" id="cam_center">Center</button>
-			<button class="btn btn-default" id="">XXXXX</button>
-			<button class="btn btn-default" id="">XXXXX</button>
-			<button class="btn btn-default" id="">XXXXX</button>
-			<button class="btn btn-default" id="">XXXXX</button>
-			<button class="btn btn-default" id="">XXXXX</button>
-			<button class="btn btn-danger" id="poweroff">Power OFF</button>
 		</div>
 		<div class="col-xs-1">
-			<div style="height: 240px;" id="sld_cam_ver"></div>
+			<div style="height: 321px;" id="sld_cam_ver"></div>
 		</div>
 	</div>
 	<div class="row">
@@ -64,6 +60,7 @@
 			</div>
 			<div id="debugConsole"></div>
 			<button id="clear_console" class="btn btn-default">Clr</button>
+			<button class="btn btn-danger" id="poweroff">Power OFF</button>
 		</div>
 	</div>
 </div>

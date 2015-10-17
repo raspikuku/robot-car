@@ -61,6 +61,9 @@ $(document).ready(function () {
 		value: 50,
 		slide: function(event, ui) {
 			moveCam('hor', 100 - ui.value)
+		},
+		change: function(event, ui) {
+			moveCam('ver', 100 - ui.value)
 		}
 	}).slider("pips", {
 		step: 25,
@@ -72,6 +75,9 @@ $(document).ready(function () {
 		value: 50,
 		orientation: "vertical",
 		slide: function(event, ui) {
+			moveCam('ver', 100 - ui.value)
+		},
+		change: function(event, ui) {
 			moveCam('ver', 100 - ui.value)
 		}
 	}).slider("pips", {
@@ -120,4 +126,19 @@ $(document).ready(function () {
 			$('#debugConsole').prepend('<p class="error">' + time + ' ' + data.error + '</p>');
 		}
 	}
+});
+
+$(function() {
+
+	var $rad = $('#rad'),
+			deg = 0;
+
+	(function rotate() {
+		$rad.css({ transform: 'rotate(' + deg + 'deg)'});
+		setTimeout(function() {
+			++deg;
+			rotate();
+		}, 25);
+	})();
+
 });
