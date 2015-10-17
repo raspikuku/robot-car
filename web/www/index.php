@@ -21,7 +21,13 @@
 		<div class="col-xs-4">
 			<div id="radar">
 				<div id="rad"></div>
-			</div>
+
+				<div class="obj" data-x="120" data-y="65"></div>
+				<div class="obj" data-x="140" data-y="185"></div>
+				<div class="obj" data-x="220" data-y="35"></div>
+				<div class="obj" data-x="120" data-y="235"></div>
+
+		</div>
 		</div>
 		<div class="col-xs-3">
 			<div id="sld_cam_hor"></div>

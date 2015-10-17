@@ -32,9 +32,24 @@ body {
 	height:321px;
 	background:#222 url(../img/radar.png);
 	border-radius:320px;
+	overflow:hidden;
 }
+
 #rad{
 	position:absolute;
 	width:321px;
-	height:321px; background:url(../img/rad.png);
+	height:321px;
+	background:url(../img/rad.png);
+}
+
+.obj{
+	background:#cf5;
+	position:absolute;
+	border-radius:10px;
+	width:4px;
+	height:4px;
+	margin-top:-2px;
+	margin-left:-2px;
+	box-shadow:0 0 10px 5px rgba(100,255,0,0.5);
+	opacity:0.2;
 }
