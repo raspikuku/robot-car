@@ -63,7 +63,7 @@ $(document).ready(function () {
 			moveCam('hor', 100 - ui.value)
 		},
 		change: function(event, ui) {
-			moveCam('ver', 100 - ui.value)
+			moveCam('hor', 100 - ui.value)
 		}
 	}).slider("pips", {
 		step: 25,
