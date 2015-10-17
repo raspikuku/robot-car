@@ -53,11 +53,19 @@ $(document).ready(function () {
 		sendRequest('stop');
 	});
 
+	$('#clear_console').click(function() {
+		$('#debugConsole').html('');
+	});
+
 	$("#sld_cam_hor").slider({
 		value: 50,
 		slide: function(event, ui) {
 			moveCam('hor', 100 - ui.value)
 		}
+	}).slider("pips", {
+		step: 25,
+		rest: 'label',
+		//labels: ['-90', '-45', '0', '45', '90']
 	});
 
 	$("#sld_cam_ver").slider({
@@ -66,6 +74,10 @@ $(document).ready(function () {
 		slide: function(event, ui) {
 			moveCam('ver', 100 - ui.value)
 		}
+	}).slider("pips", {
+		step: 25,
+		rest: 'label',
+		//labels: ['-90', '-45', '0', '45', '90']
 	});
 
 	$('#cam_center').click(function() {

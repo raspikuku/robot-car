@@ -1,3 +1,6 @@
+body {
+	background-color: #272727;
+}
 .btn-control {
 	height: 5em;
 }
@@ -17,4 +20,8 @@
 
 #debugConsole p.error {
 	color: red;
+}
+
+#sld_cam_hor {
+	margin-bottom: 50px;
 }

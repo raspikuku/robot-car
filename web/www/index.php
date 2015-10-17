@@ -7,27 +7,32 @@
 	<title>RobotCar</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/jquery-ui-slider-pips.css" rel="stylesheet" />
 	<link href="css/robot-car.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-	<h1>RobotCar</h1>
+	<h4>RobotCar</h4>
 
 	<div class="row">
-		<div class="col-xs-5">
+		<div class="col-xs-4">
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 		</div>
-		<div class="col-xs-1">
+		<div class="col-xs-4">
+			<div style="border: 1px dashed silver; height: 240px;"></div>
+		</div>
+		<div class="col-xs-3">
+			<div id="sld_cam_hor"></div>
 			<button class="btn btn-default" id="cam_center">Center</button>
-		</div>
-		<div class="col-xs-5">
-			<div style="width: 240px; height: 240px;">
-				<div id="sld_cam_hor"></div>
-				<div style="height: 200px;" id="sld_cam_ver"></div>
-			</div>
+			<button class="btn btn-default" id="">XXXXX</button>
+			<button class="btn btn-default" id="">XXXXX</button>
+			<button class="btn btn-default" id="">XXXXX</button>
+			<button class="btn btn-default" id="">XXXXX</button>
+			<button class="btn btn-default" id="">XXXXX</button>
+			<button class="btn btn-danger" id="poweroff">Power OFF</button>
 		</div>
 		<div class="col-xs-1">
-			<button class="btn btn-danger" id="poweroff">Poweroff</button>
+			<div style="height: 240px;" id="sld_cam_ver"></div>
 		</div>
 	</div>
 	<div class="row">
@@ -58,11 +63,13 @@
 				</div>
 			</div>
 			<div id="debugConsole"></div>
+			<button id="clear_console" class="btn btn-default">Clr</button>
 		</div>
 	</div>
 </div>
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/jquery-ui-slider-pips.js"></script>
 <script src="js/robot-car.js"></script>
 </body>
 </html>
