@@ -15,10 +15,17 @@
 	<h4>RobotCar</h4>
 
 	<div class="row">
-		<div class="col-xs-4">
+		<div class="col-xs-5" id="container_cam">
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
+			<div id="sld_cam_hor"></div>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-1">
+			<div style="height: 321px;" id="sld_cam_ver"></div>
+		</div>
+		<div class="col-xs-1">
+			<button class="btn btn-default" id="cam_center">Center</button>
+		</div>
+		<div class="col-xs-5" id="container_radar">
 			<div id="radar">
 				<div id="rad"></div>
 
@@ -28,13 +35,6 @@
 				<div class="obj" data-x="120" data-y="235"></div>
 
 		</div>
-		</div>
-		<div class="col-xs-3">
-			<div id="sld_cam_hor"></div>
-			<button class="btn btn-default" id="cam_center">Center</button>
-		</div>
-		<div class="col-xs-1">
-			<div style="height: 321px;" id="sld_cam_ver"></div>
 		</div>
 	</div>
 	<div class="row">
