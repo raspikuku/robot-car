@@ -95,13 +95,15 @@ $(document).ready(function () {
 
 	$('#ping_dist').click(function() {
 		$.post('robot.php', { action: 'ping_dist'}, function (data) {
+			parseResponse(data);
 			data = $.parseJSON(data);
 			$('#radar_dist').html(data.performed);
 		});
 	});
 
 	$('#poweroff').click(function() {
-		sendRequest('poweroff')
+		$('#debugConsole').prepend('<p class="error">Sending POWEROFF...</p>');
+		sendRequest('poweroff');
 	});
 
 	function sendRequest(action) {
