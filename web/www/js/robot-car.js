@@ -94,7 +94,10 @@ $(document).ready(function () {
 	});
 
 	$('#ping_dist').click(function() {
-		sendRequest('ping_dist');
+		$.post('robot.php', { action: 'ping_dist'}, function (data) {
+			data = $.parseJSON(data);
+			$('radar_dist').html(data.performed);
+		});
 	});
 
 	$('#poweroff').click(function() {
