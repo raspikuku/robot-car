@@ -50,7 +50,10 @@ try
 		break;
 		case 'ping_dist':
 			$response->performed = $robot->pingDist();
-			break;
+		break;
+		case 'radar_sweep':
+			$response->performed = $robot->sweep();
+		break;
 		case 'poweroff':
 			$robot->poweroff();
 			$response->performed = 'POWEROFF';
