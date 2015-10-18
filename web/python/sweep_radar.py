@@ -12,9 +12,11 @@ GPIO.setup(ECHO,GPIO.IN)
 
 GPIO.output(TRIG, False)
 
-for angle in range(0, 110, 10):
-  os.system("echo 1=" + angle + " > /dev/servoblaster")
-  time.sleep(100)
+os.system("echo 0=50% > /dev/servoblaster")
+
+for angle in range(0, 105, 5):
+  os.system("echo 1=" + str(angle) + "% > /dev/servoblaster")
+  time.sleep(0.05)
 
   GPIO.output(TRIG, True)
   time.sleep(0.00001)
@@ -36,6 +38,10 @@ for angle in range(0, 110, 10):
     distance = 0
 
   print str(angle) + ' ' + str(distance)
+
+for angle in range(100, -5, -5):
+  os.system("echo 1=" + str(angle) + "% > /dev/servoblaster")
+  time.sleep(0.03)
 
 GPIO.cleanup()
 
