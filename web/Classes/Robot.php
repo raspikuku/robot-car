@@ -73,7 +73,24 @@ class Robot
 	{
 		$valueString = trim(shell_exec('sudo /usr/bin/python ../python/sweep_radar.py 2>&1'));
 
-		return $valueString;
+		/*
+		 * alpha = 90° - beta
+		 * a = c * cos(beta)
+		 * b = sqr(c² - a²)
+		 */
+
+		$lines = explode("\n", $valueString);
+
+		$touples = new stdClass;
+
+		foreach($lines as $line)
+		{
+			$values = explode(' ', $line);
+
+			$touples->$values[0] = $values[1];
+		}
+
+		return json_encode($touples);
 	}
 
 	public function poweroff()
