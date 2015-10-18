@@ -66,7 +66,7 @@ class Robot
 
 	public function pingDist()
 	{
-		return trim(shell_exec('python ../python/disttest.py 2>&1'));
+		return trim(shell_exec('sudo /usr/bin/python ../python/disttest.py 2>&1'));
 	}
 
 	public function poweroff()
