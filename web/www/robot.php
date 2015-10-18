@@ -49,7 +49,7 @@ try
 			$response->performed = $robot->camera($direction, $position);
 		break;
 		case 'ping_dist':
-			$response->performed = 'a';
+			$response->performed = $robot->pingDist();
 			break;
 		case 'poweroff':
 			$robot->poweroff();
