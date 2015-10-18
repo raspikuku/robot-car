@@ -96,7 +96,7 @@ $(document).ready(function () {
 	$('#ping_dist').click(function() {
 		$.post('robot.php', { action: 'ping_dist'}, function (data) {
 			data = $.parseJSON(data);
-			$('radar_dist').html(data.performed);
+			$('#radar_dist').html(data.performed);
 		});
 	});
 
