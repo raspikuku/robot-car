@@ -101,6 +101,14 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#radar_sweep').click(function(){
+		$.post('robot.php', { action: 'radar_sweep'}, function (data) {
+			parseResponse(data);
+			data = $.parseJSON(data);
+			//$('#radar_dist').html(data.performed);
+		});
+	});
+
 	$('#poweroff').click(function() {
 		$('#debugConsole').prepend('<p class="error">Sending POWEROFF...</p>');
 		sendRequest('poweroff');
