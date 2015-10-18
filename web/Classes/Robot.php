@@ -69,6 +69,13 @@ class Robot
 		return trim(shell_exec('sudo /usr/bin/python ../python/disttest.py 2>&1'));
 	}
 
+	public function sweep()
+	{
+		$valueString = trim(shell_exec('sudo /usr/bin/python ../python/sweep_radar.py 2>&1'));
+
+		return $valueString;
+	}
+
 	public function poweroff()
 	{
 		return $this->shellExec('sudo poweroff');
