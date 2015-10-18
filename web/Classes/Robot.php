@@ -64,6 +64,11 @@ class Robot
 		return $dir . ' / ' . $position;
 	}
 
+	public function pingDist()
+	{
+		return trim(shell_exec('python ../python/disttest.py 2>&1'));
+	}
+
 	public function poweroff()
 	{
 		return $this->shellExec('sudo poweroff');

@@ -93,6 +93,10 @@ $(document).ready(function () {
 		moveCam('ver', 50);
 	});
 
+	$('#ping_dist').click(function() {
+		sendRequest('ping_dist');
+	});
+
 	$('#poweroff').click(function() {
 		sendRequest('poweroff')
 	});

@@ -24,6 +24,7 @@
 		</div>
 		<div class="col-xs-1">
 			<button class="btn btn-default" id="cam_center">Center</button>
+			<button class="btn btn-default" id="ping_dist">DPing</button>
 		</div>
 		<div class="col-xs-5" id="container_radar">
 			<div id="radar">

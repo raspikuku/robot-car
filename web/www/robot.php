@@ -48,6 +48,9 @@ try
 
 			$response->performed = $robot->camera($direction, $position);
 		break;
+		case 'ping_dist':
+			$response->performed = 'a';
+			break;
 		case 'poweroff':
 			$robot->poweroff();
 			$response->performed = 'POWEROFF';
