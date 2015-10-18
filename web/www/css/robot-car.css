@@ -61,3 +61,8 @@ body {
 	box-shadow:0 0 10px 5px rgba(100,255,0,0.5);
 	opacity:0.2;
 }
+
+#radar_dist {
+	padding: 5px;
+	color: yellowgreen;
+}
