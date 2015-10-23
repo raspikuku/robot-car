@@ -20,3 +20,7 @@ The user `www-data` needs rights to shut down the system:
 
 * `sudo visudo`
 * ADD: `www-data ALL = NOPASSWD: /sbin/poweroff`
+
+#### Nachhilfe
+
+* http://www.arndt-bruenner.de/mathe/scripts/dreiecksberechnungrw.htm

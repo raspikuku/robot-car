@@ -3,50 +3,20 @@
  */
 
 $(document).ready(function () {
-	var intervalId;
-
 	$("#fwd").mousedown(function() {
 		sendRequest('fwd');
-		intervalId = setInterval(function () {
-			sendRequest('fwd')
-		}, 500);
-	}).mouseup(function() {
-		clearInterval(intervalId);
-	}).mouseout(function() {
-		clearInterval(intervalId);
 	});
 
 	$('#rev').mousedown(function() {
 		sendRequest('rev');
-		intervalId = setInterval(function () {
-			sendRequest('rev')
-		}, 500);
-	}).mouseup(function() {
-		clearInterval(intervalId);
-	}).mouseout(function() {
-		clearInterval(intervalId);
 	});
 
 	$('#left').mousedown(function() {
 		sendRequest('left');
-		intervalId = setInterval(function () {
-			sendRequest('left')
-		}, 500);
-	}).mouseup(function() {
-		clearInterval(intervalId);
-	}).mouseout(function() {
-		clearInterval(intervalId);
 	});
 
 	$('#right').mousedown(function() {
 		sendRequest('right');
-		intervalId = setInterval(function () {
-			sendRequest('right')
-		}, 500);
-	}).mouseup(function() {
-		clearInterval(intervalId);
-	}).mouseout(function() {
-		clearInterval(intervalId);
 	});
 
 	$('#stop').mousedown(function() {
@@ -102,9 +72,55 @@ $(document).ready(function () {
 	});
 
 	$('#radar_sweep').click(function(){
+		var ddData = '{"0":"163.85","5":"164.14","10":"163.85","15":"163.08","20":"153.72","25":"134.29","30":"130.41","35":"20.46","40":"19.36","45":"20.26","50":"17.5","55":"18.97","60":"20.0","65":"23.34","70":"66.96","75":"68.02","80":"79.59","85":"127.86","90":"133.19","95":"81.09","100":"79.97"}';
+		var data = $.parseJSON(ddData);
+
+		var maxDist = 200;
+
+		console.log(data);
+
+		var angle, distance, a, b;
+var tf = Math.PI / 180;
+
+		for (var key in data) {
+			angle = key / 100 * 180;
+			distance = data[key];
+
+if (distance > maxDist) {
+			$('#obj-1-' + key).data('x', 0);
+			$('#obj-1-' + key).data('x', 0);
+	continue;
+}
+
+			console.log(angle + '° - ' + distance + ' cm  ');
+
+			a = distance * Math.sin(angle * tf);
+			b = distance * Math.cos(angle * tf);
+
+			console.log(a, b);
+
+factor = a / maxDist * 160;
+y = 160 - factor;
+factor = b / maxDist * 160;
+x = 160 - factor;
+console.log(x,y);
+
+x = 320 - (key / 100 * 320);
+y = 160 - (distance / maxDist * 160);
+
+			$('#obj-1-' + key).data('x', x);
+			$('#obj-1-' + key).data('y', y);
+		}
+
+		setRadarObjects();
+
+		$('#debugConsole').prepend('<p>radar sweep</p>');
+
+		return;
 		$.post('robot.php', { action: 'radar_sweep'}, function (data) {
 			parseResponse(data);
 			data = $.parseJSON(data);
+
 			//$('#radar_dist').html(data.performed);
 		});
 	});
@@ -145,22 +161,18 @@ $(document).ready(function () {
 	}
 });
 
-/*
-$(function() {
+function setRadarObjects() {
+	var $obj = $('.obj'),
+			rad = 160.5; //   = 321/2
 
-	var $rad = $('#rad'),
-			deg = 0;
-
-	(function rotate() {
-		$rad.css({ transform: 'rotate(' + deg + 'deg)'});
-		setTimeout(function() {
-			++deg;
-			rotate();
-		}, 25);
-	})();
-
-});
-*/
+	$obj.each(function(){
+		var data = $(this).data(),
+				pos = {X:data.x, Y:data.y},
+				getAtan = Math.atan2(pos.X-rad, pos.Y-rad),
+				getDeg = ~~(-getAtan/(Math.PI/180) + 180);
+		$(this).css({left:pos.X, top:pos.Y}).attr('data-atDeg', getDeg);
+	});
+}
 
 $(function() {
 
@@ -184,8 +196,8 @@ $(function() {
 		// LOOP
 		setTimeout(function() {
 			deg = ++deg%360;
-			/* if(deg == 90){deg = 270;} */
+			if(deg == 90){deg = 270;}
 			rotate();
-		}, 25);
+		}, 10);
 	})();
 });

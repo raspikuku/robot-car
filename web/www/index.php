@@ -32,10 +32,27 @@
 			<div id="radar">
 				<div id="rad"></div>
 
-				<div class="obj" data-x="120" data-y="65"></div>
-				<div class="obj" data-x="140" data-y="185"></div>
-				<div class="obj" data-x="220" data-y="35"></div>
-				<div class="obj" data-x="120" data-y="235"></div>
+				<div id="obj-1-0" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-5" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-10" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-15" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-20" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-25" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-30" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-35" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-40" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-45" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-50" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-55" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-60" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-65" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-70" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-75" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-80" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-85" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-90" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-95" class="obj" data-x="0" data-y="0"></div>
+				<div id="obj-1-100" class="obj" data-x="0" data-y="0"></div>
 
 		</div>
 		</div>

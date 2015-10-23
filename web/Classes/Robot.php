@@ -14,45 +14,66 @@ class Robot
 
 	public $sleepTime = 300000;
 
-	public function __construct()
+	private $initialized = false;
+
+	private function initMotors()
 	{
+		if ($this->initialized)
+		{
+			return $this;
+		}
+
 		foreach($this->pins as $i => $pin)
 		{
 			$this->gpio("mode {$pin} out");
 		}
+
+		$this->initialized = true;
+
+		return $this;
 	}
 
 	public function rev()
 	{
-		$this->set([1, 0, 1, 0]);
+		$this->initMotors()->set([1, 0, 1, 0]);
 		//usleep($this->sleepTime);
 		//$this->stop();
+
+		return $this;
 	}
 
 	public function fwd()
 	{
-		$this->set([0, 1, 0, 1]);
+		$this->initMotors()->set([0, 1, 0, 1]);
 		//usleep($this->sleepTime);
 		//$this->stop();
+
+		return $this;
 	}
 
 	function right()
 	{
-		$this->set([1, 0, 0, 1]);
+		$this->initMotors()->set([1, 0, 0, 1]);
 		//usleep($this->sleepTime);
 		//$this->stop();
+
+		return $this;
 	}
 
 	function left()
 	{
-		$this->set([0, 1, 1, 0]);
+		$this->initMotors()->set([0, 1, 1, 0]);
 		//usleep($this->sleepTime);
 		//$this->stop();
+
+		return $this;
 	}
 
 	function stop()
 	{
-		$this->set([0, 0, 0, 0]);
+		$this->initMotors()->set([0, 0, 0, 0]);
+
+		return $this;
 	}
 
 	public function camera($direction, $position)
@@ -66,12 +87,14 @@ class Robot
 
 	public function pingDist()
 	{
-		return trim(shell_exec('sudo /usr/bin/python ../python/disttest.py 2>&1'));
+		return $this->shellExec('sudo /usr/bin/python ../python/disttest.py', true);
 	}
 
 	public function sweep()
 	{
-		$valueString = trim(shell_exec('sudo /usr/bin/python ../python/sweep_radar.py 2>&1'));
+		//$valueString = trim(shell_exec('sudo /usr/bin/python ../python/sweep_radar.py 2>&1'));
+
+		$valueString = $this->shellExec('sudo /usr/bin/python ../python/sweep_radar.py', true);
 
 		/*
 		 * alpha = 90° - beta
@@ -108,36 +131,18 @@ class Robot
 
 	private function gpio($command, $expectReturn = false)
 	{
-		$output = trim(shell_exec($this->gpioCmd . ' ' . $command . ' 2>&1'));
-
-		if ($output && !$expectReturn)
-		{
-			throw new UnexpectedValueException($output);
-		}
-
-		return $output;
+		return $this->shellExec($this->gpioCmd . ' ' . $command, $expectReturn);
 	}
 
 	private function servo($number, $position)
 	{
-		return $this->shellExec(sprintf(
-				'echo %d=%d%% > /dev/servoblaster 2>&1',
+		$this->shellExec(sprintf(
+				'echo %d=%d%% > /dev/servoblaster',
 				(int)$number,
 				(int)$position
-		));
+				));
 
-		$output = trim(shell_exec(sprintf(
-				'echo %d=%d%% > /dev/servoblaster 2>&1',
-				(int)$number,
-				(int)$position
-				)));
-
-		if ($output)
-		{
-			throw new UnexpectedValueException($output);
-		}
-
-		return $output;
+		return $this;
 	}
 
 	private function shellExec($command, $expectReturn = false)
