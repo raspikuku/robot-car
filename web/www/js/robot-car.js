@@ -72,7 +72,7 @@ $(document).ready(function () {
 	});
 
 	$('#light_1').click(function() {
-		var status = 1;
+		var status = $('#light_1_status').html() == 'OFF' ? 1 : 0;
 		$.post('robot.php', { action: 'light', num: 1, status: status}, function (data) {
 			parseResponse(data);
 			data = $.parseJSON(data);
