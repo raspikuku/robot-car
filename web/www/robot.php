@@ -58,6 +58,7 @@ try
 			$num = isset($_POST['num']) ? intval($_POST['num']) : 0;
 			$status = isset($_POST['status']) ? intval($_POST['status']) : 0;
 
+			$response->performed = $robot->setLight($num, $status);
 		break;
 		case 'poweroff':
 			$robot->poweroff();

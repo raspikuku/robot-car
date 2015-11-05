@@ -76,8 +76,7 @@ $(document).ready(function () {
 		$.post('robot.php', { action: 'light', num: 1, status: status}, function (data) {
 			parseResponse(data);
 			data = $.parseJSON(data);
-			var newStatus = 'ON';
-			$('#light_1_status').html(newStatus);
+			$('#light_1_status').html(data.performed);
 		});
 	});
 
