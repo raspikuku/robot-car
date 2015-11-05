@@ -71,6 +71,16 @@ $(document).ready(function () {
 		});
 	});
 
+	$('#light_1').click(function() {
+		var status = 1;
+		$.post('robot.php', { action: 'light', num: 1, status: status}, function (data) {
+			parseResponse(data);
+			data = $.parseJSON(data);
+			var newStatus = 'ON';
+			$('#light_1_status').html(newStatus);
+		});
+	});
+
 	$('#radar_sweep').click(function(){
 		var ddData = '{"0":"163.85","5":"164.14","10":"163.85","15":"163.08","20":"153.72","25":"134.29","30":"130.41","35":"20.46","40":"19.36","45":"20.26","50":"17.5","55":"18.97","60":"20.0","65":"23.34","70":"66.96","75":"68.02","80":"79.59","85":"127.86","90":"133.19","95":"81.09","100":"79.97"}';
 		var data = $.parseJSON(ddData);

@@ -24,9 +24,10 @@
 		</div>
 		<div class="col-xs-1">
 			<button class="btn btn-default" id="cam_center">Center</button>
-			<button class="btn btn-default" id="ping_dist">DPing</button>
-			<div id="radar_dist"></div>
+			<button class="btn btn-default" id="ping_dist">DPing: <span id="radar_dist"></span></button>
+
 			<button class="btn btn-default" id="radar_sweep">Radar</button>
+			<button class="btn btn-default" id="light_1">Light 1:  <span id="light_1_status">OFF</span></button>
 		</div>
 		<div class="col-xs-5" id="container_radar">
 			<div id="radar">

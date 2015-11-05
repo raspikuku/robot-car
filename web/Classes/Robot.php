@@ -16,6 +16,8 @@ class Robot
 
 	private $initialized = false;
 
+	public $lights = ['1' => 12];
+
 	private function initMotors()
 	{
 		if ($this->initialized)
@@ -31,6 +33,21 @@ class Robot
 		$this->initialized = true;
 
 		return $this;
+	}
+
+	public function setLight($num, $status)
+	{
+		if (false == isset($this->lights[$num]))
+		{
+			throw new UnexpectedValueException('Invalid light number');
+		}
+
+		$status = ($status) ? 1 : 0;
+
+		$this->gpio('mode ' . $this->lights[$num] . ' out');
+		$this->gpio('write ' . $this->lights[$num] . ' ' . $status);
+
+		return $status ? 'ON' : 'OFF';
 	}
 
 	public function rev()
