@@ -8,31 +8,81 @@
 
 class Robot
 {
-	private $pins = [17, 27, 22, 23];
+	/**
+	 * Motor pins
+	 * @var array
+	 */
+	public $pins = [17, 27, 22, 23];
+
+	/**
+	 * Light pins
+	 * @var array
+	 */
+	public $lights = ['1' => 12];
+
+	/**
+	 * Sleep time in milliseconds.
+	 *
+	 * If not set command will run without stop()
+	 *
+	 * @var int
+	 */
+	public $sleepTime = 0; //300000;
 
 	private $gpioCmd = '/usr/local/bin/gpio -g';
 
-	public $sleepTime = 300000;
-
 	private $initialized = false;
 
-	public $lights = ['1' => 12];
-
-	private function initMotors()
+	public function fwd()
 	{
-		if ($this->initialized)
-		{
-			return $this;
-		}
+		$this->initMotors()
+				->set([0, 1, 0, 1])
+				->sleep();
 
-		foreach($this->pins as $i => $pin)
-		{
-			$this->gpio("mode {$pin} out");
-		}
+		return 'Forward';
+	}
 
-		$this->initialized = true;
+	public function rev()
+	{
+		$this->initMotors()
+			->set([1, 0, 1, 0])
+			->sleep();
 
-		return $this;
+		return 'Reverse';
+	}
+
+	function right()
+	{
+		$this->initMotors()
+			->set([1, 0, 0, 1])
+			->sleep();
+
+		return 'Right';
+	}
+
+	function left()
+	{
+		$this->initMotors()
+			->set([0, 1, 1, 0])
+			->sleep();
+
+		return 'Left';
+	}
+
+	public function stop()
+	{
+		$this->initMotors()->set([0, 0, 0, 0]);
+
+		return 'STOP';
+	}
+
+	public function camera($direction, $position)
+	{
+		$dir = ($direction == 'hor') ? 1 : 0;
+
+		$this->servo($dir, $position);
+
+		return $dir . ' / ' . $position;
 	}
 
 	public function setLight($num, $status)
@@ -48,58 +98,6 @@ class Robot
 		$this->gpio('write ' . $this->lights[$num] . ' ' . $status);
 
 		return $status ? 'ON' : 'OFF';
-	}
-
-	public function rev()
-	{
-		$this->initMotors()->set([1, 0, 1, 0]);
-		//usleep($this->sleepTime);
-		//$this->stop();
-
-		return $this;
-	}
-
-	public function fwd()
-	{
-		$this->initMotors()->set([0, 1, 0, 1]);
-		//usleep($this->sleepTime);
-		//$this->stop();
-
-		return $this;
-	}
-
-	function right()
-	{
-		$this->initMotors()->set([1, 0, 0, 1]);
-		//usleep($this->sleepTime);
-		//$this->stop();
-
-		return $this;
-	}
-
-	function left()
-	{
-		$this->initMotors()->set([0, 1, 1, 0]);
-		//usleep($this->sleepTime);
-		//$this->stop();
-
-		return $this;
-	}
-
-	function stop()
-	{
-		$this->initMotors()->set([0, 0, 0, 0]);
-
-		return $this;
-	}
-
-	public function camera($direction, $position)
-	{
-		$dir = ($direction == 'hor') ? 1 : 0;
-
-		$this->servo($dir, $position);
-
-		return $dir . ' / ' . $position;
 	}
 
 	public function pingDist()
@@ -148,12 +146,42 @@ class Robot
 		return $this->shellExec('sudo poweroff');
 	}
 
+	private function sleep()
+	{
+		if ($this->sleepTime)
+		{
+			usleep($this->sleepTime);
+			$this->stop();
+		}
+
+		return $this;
+	}
+
+	private function initMotors()
+	{
+		if ($this->initialized)
+		{
+			return $this;
+		}
+
+		foreach($this->pins as $i => $pin)
+		{
+			$this->gpio("mode {$pin} out");
+		}
+
+		$this->initialized = true;
+
+		return $this;
+	}
+
 	private function set($values)
 	{
 		foreach($this->pins as $i => $pin)
 		{
 			$this->gpio("write $pin {$values[$i]}");
 		}
+
+		return $this;
 	}
 
 	private function gpio($command, $expectReturn = false)
@@ -163,11 +191,13 @@ class Robot
 
 	private function servo($number, $position)
 	{
-		$this->shellExec(sprintf(
+		$this->shellExec(
+			sprintf(
 				'echo %d=%d%% > /dev/servoblaster',
 				(int)$number,
 				(int)$position
-				));
+			)
+		);
 
 		return $this;
 	}

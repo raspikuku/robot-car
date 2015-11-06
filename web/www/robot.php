@@ -23,50 +23,46 @@ try
 	switch ($action)
 	{
 		case 'stop' :
-			$robot->stop();
-			$response->performed = 'STOP';
-		break;
 		case 'fwd' :
-			$robot->fwd();
-			$response->performed = 'Forward';
-		break;
 		case 'rev' :
-			$robot->rev();
-			$response->performed = 'Reverse';
-		break;
 		case 'left' :
-			$robot->left();
-			$response->performed = 'Left';
-		break;
 		case 'right' :
-			$robot->right();
-			$response->performed = 'Right';
+			$robot->$action();
+			$response->performed = $action;
 		break;
+
 		case 'cam':
 			$direction = isset($_POST['direction']) ? $_POST['direction'] : '';
 			$position = isset($_POST['position']) ? $_POST['position'] : '';
 
 			$response->performed = $robot->camera($direction, $position);
 		break;
+
 		case 'ping_dist':
 			$response->performed = $robot->pingDist();
 		break;
+
 		case 'radar_sweep':
-			$response->performed = $robot->sweep();
+			$response->performed = 'radar_sweep';
+			$response->data = $robot->sweep();
 		break;
+
 		case 'show_clock':
 			$response->performed = $robot->showClock();
 		break;
+
 		case 'light':
 			$num = isset($_POST['num']) ? intval($_POST['num']) : 0;
 			$status = isset($_POST['status']) ? intval($_POST['status']) : 0;
 
 			$response->performed = $robot->setLight($num, $status);
 		break;
+
 		case 'poweroff':
 			$robot->poweroff();
 			$response->performed = 'POWEROFF';
 		break;
+
 		default :
 			$response->performed = '**NOTHING**';
 		break;
