@@ -28,6 +28,7 @@
 
 			<button class="btn btn-default" id="radar_sweep">Radar</button>
 			<button class="btn btn-default" id="light_1">Light 1:  <span id="light_1_status">OFF</span></button>
+			<button class="btn btn-default" id="show_clock">Clock</button>
 		</div>
 		<div class="col-xs-5" id="container_radar">
 			<div id="radar">

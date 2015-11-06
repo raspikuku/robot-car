@@ -54,6 +54,9 @@ try
 		case 'radar_sweep':
 			$response->performed = $robot->sweep();
 		break;
+		case 'show_clock':
+			$response->performed = $robot->showClock();
+		break;
 		case 'light':
 			$num = isset($_POST['num']) ? intval($_POST['num']) : 0;
 			$status = isset($_POST['status']) ? intval($_POST['status']) : 0;

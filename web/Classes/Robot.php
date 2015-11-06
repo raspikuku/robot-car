@@ -107,6 +107,11 @@ class Robot
 		return $this->shellExec('sudo /usr/bin/python ../python/disttest.py', true);
 	}
 
+	public function showClock()
+	{
+		return $this->shellExec('sudo /usr/bin/python ../python/show_time.py 12 34', true);
+	}
+
 	public function sweep()
 	{
 		//$valueString = trim(shell_exec('sudo /usr/bin/python ../python/sweep_radar.py 2>&1'));
