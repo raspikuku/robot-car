@@ -109,7 +109,12 @@ class Robot
 
 	public function showClock()
 	{
-		return $this->shellExec('sudo /usr/bin/python ../python/show_time.py 12 34', true);
+		date_default_timezone_set('America/Guayaquil');
+
+		$h = date('G');
+		$m = date('i');
+
+		return $this->shellExec(sprintf('sudo /usr/bin/python ../python/show_time.py %d %d', $h, $m), true);
 	}
 
 	public function sweep()
