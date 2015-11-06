@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import sys
+import time
 from tm1637 import TM1637
 
 hour = sys.argv[1]
