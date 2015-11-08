@@ -146,6 +146,17 @@ class Robot
 		return $this->shellExec('sudo poweroff');
 	}
 
+	public function status()
+	{
+		$status = new stdClass;
+
+		$status->feeling = '=;)';
+
+		$status->bearing = $this->shellExec('../python/getbearing.py', true);
+
+		return json_encode($status);
+	}
+
 	private function sleep()
 	{
 		if ($this->sleepTime)

@@ -29,6 +29,7 @@
 			<button class="btn btn-default" id="radar_sweep">Radar</button>
 			<button class="btn btn-default" id="light_1">Light 1:  <span id="light_1_status">OFF</span></button>
 			<button class="btn btn-default" id="show_clock">Clock</button>
+			<button class="btn btn-default" id="update_status">Status <span id="update_status_status">OFF</span></button>
 		</div>
 		<div class="col-xs-5" id="container_radar">
 			<div id="radar">
@@ -74,6 +75,10 @@
 			</button>
 		</div>
 		<div class="col-xs-6">
+			<img src="img/windrose.svg" id="windrose" width="250" height="250" />
+			<span id="bearing">0</span>
+			<div id="sld_windrose"></div>
+
 			<div class="row">
 				<div class="col-xs-6">
 					<button class="btn btn-lg btn-block btn-default btn-control" id="left">
@@ -96,5 +101,6 @@
 <script src="js/jquery-ui.js"></script>
 <script src="js/jquery-ui-slider-pips.js"></script>
 <script src="js/robot-car.js"></script>
+<script src="js/jQueryRotate.js"></script>
 </body>
 </html>

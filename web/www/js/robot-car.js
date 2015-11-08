@@ -56,6 +56,21 @@ $(document).ready(function () {
 		//labels: ['-90', '-45', '0', '45', '90']
 	});
 
+	$("#sld_windrose").slider({
+		max : 360,
+		slide : function (event, ui) {
+			setBearing(ui.value);
+		},
+		change: function (event, ui) {
+			setBearing(ui.value);
+		}
+	});
+
+	function setBearing(degrees) {
+		$("#windrose").rotate(360 -  degrees);
+		$('#bearing').html(degrees + ' &deg;');
+	}
+
 	$('#cam_center').click(function () {
 		$("#sld_cam_hor").slider("option", "value", 50);
 		$("#sld_cam_ver").slider("option", "value", 50);
@@ -86,6 +101,46 @@ $(document).ready(function () {
 			//data = $.parseJSON(data);
 			//$('#light_1_status').html(data.performed);
 		});
+	});
+
+	var update_status_running = false;
+
+	function update_status() {
+		if(false == update_status_running) {
+			return;
+		}
+
+		$.post('robot.php', {action: 'status'}, function (data) {
+			data = parseResponse(data);
+			console.log(data);
+
+			var status = $.parseJSON(data.data)
+			console.log(status);
+
+			setBearing(parseInt(status.bearing));
+
+			setTimeout(update_status, 1000);
+			//data = $.parseJSON(data);
+			//$('#light_1_status').html(data.performed);
+		});
+	}
+
+	$('#update_status').click(function () {
+		console.log(update_status_running);
+		if (update_status_running) {
+			update_status_running = false;
+
+			$('#update_status_status').html('OFF');
+
+			return;
+		}
+
+		$('#update_status_status').html('ON');
+
+		update_status_running = true;
+
+		update_status();
+
 	});
 
 	$('#radar_sweep').click(function () {
@@ -167,7 +222,6 @@ $(document).ready(function () {
 
 	function parseResponse(data) {
 		data = $.parseJSON(data);
-		console.log(data);
 
 		var d = new Date();
 		var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();

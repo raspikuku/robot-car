@@ -42,6 +42,11 @@ try
 			$response->performed = $robot->pingDist();
 		break;
 
+		case 'status':
+			$response->data = $robot->status();
+			$response->performed = 'status';
+		break;
+
 		case 'radar_sweep':
 			$response->performed = 'radar_sweep';
 			$response->data = $robot->sweep();
