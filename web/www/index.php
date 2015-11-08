@@ -30,6 +30,7 @@
 			<button class="btn btn-default" id="light_1">Light 1:  <span id="light_1_status">OFF</span></button>
 			<button class="btn btn-default" id="show_clock">Clock</button>
 			<button class="btn btn-default" id="update_status">Status <span id="update_status_status">OFF</span></button>
+			<button class="btn btn-default" id="local_control">Local <span id="local_control_status">OFF</span></button>
 		</div>
 		<div class="col-xs-5" id="container_radar">
 			<div id="radar">

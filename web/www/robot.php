@@ -68,6 +68,12 @@ try
 			$response->performed = 'POWEROFF';
 		break;
 
+		case 'local':
+			$string = file_get_contents('/home/elkuku/tests/robovalues.json');
+			$response->data = $string;
+			$response->performed = 'local';
+		break;
+
 		default :
 			$response->performed = '**NOTHING**';
 		break;

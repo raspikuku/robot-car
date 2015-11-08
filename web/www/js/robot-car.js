@@ -125,8 +125,6 @@ $(document).ready(function () {
 
 
 			setTimeout(update_status, 1000);
-			//data = $.parseJSON(data);
-			//$('#light_1_status').html(data.performed);
 		});
 	}
 
@@ -147,6 +145,51 @@ $(document).ready(function () {
 		update_status();
 
 	});
+
+	var local_control_running = false;
+
+	function read_local_control() {
+		if(false == local_control_running) {
+			return;
+		}
+
+		$.post('robot.php', {action: 'local'}, function (data) {
+			data = parseResponse(data);
+			console.log(data);
+
+			var status = $.parseJSON(data.data)
+			console.log(status);
+
+			var p1x = status.p1x;
+
+console.log(p1x);
+p1x = p1x / 1023 * 100
+console.log(p1x);
+$("#sld_cam_hor").slider("option", "value", p1x);
+
+			setTimeout(read_local_control, 1000);
+		});
+
+	}
+
+	$('#local_control').click(function () {
+		console.log(update_status_running);
+		if (local_control_running) {
+			local_control_running = false;
+
+			$('#local_control_status').html('OFF');
+
+			return;
+		}
+
+		$('#local_control_status').html('ON');
+
+		local_control_running = true;
+
+		read_local_control();
+
+	});
+
 
 	$('#radar_sweep').click(function () {
 		//var ddData = '{"0":"163.85","5":"164.14","10":"163.85","15":"163.08","20":"153.72","25":"134.29","30":"130.41","35":"20.46","40":"19.36","45":"20.26","50":"17.5","55":"18.97","60":"20.0","65":"23.34","70":"66.96","75":"68.02","80":"79.59","85":"127.86","90":"133.19","95":"81.09","100":"79.97"}';
