@@ -152,7 +152,7 @@ class Robot
 
 		$status->feeling = '=;)';
 
-		$status->bearing = $this->shellExec('../python/getbearing.py', true);
+		$status->bearing = $this->shellExec('sudo python ../python/getbearing.py', true);
 
 		return json_encode($status);
 	}
