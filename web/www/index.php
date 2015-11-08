@@ -75,7 +75,7 @@
 			</button>
 		</div>
 		<div class="col-xs-6">
-			<img src="img/windrose.svg" id="windrose" width="250" height="250" />
+			<img src="img/windrose_kuku3.svg" id="windrose" width="250" height="250" />
 			<span id="bearing">0</span>
 			<div id="sld_windrose"></div>
 
