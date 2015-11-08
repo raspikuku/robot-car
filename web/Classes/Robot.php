@@ -152,7 +152,15 @@ class Robot
 
 		$status->feeling = '=;)';
 
-		$status->bearing = $this->shellExec('sudo python ../python/getbearing.py', true);
+		//$status->bearing = $this->shellExec('sudo python ../python/getbearing.py', true);
+		$magnetString = $this->shellExec('sudo python ../python/get_magnet.py', true);
+
+		$parts = explode(',', $magnetString);
+
+		$status->bearing = trim($parts['0']);
+		$status->magnet_x = trim($parts['1']);
+		$status->magnet_y = trim($parts['2']);
+		$status->magnet_z = trim($parts['3']);
 
 		return json_encode($status);
 	}

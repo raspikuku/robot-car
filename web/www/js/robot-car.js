@@ -119,6 +119,11 @@ $(document).ready(function () {
 
 			setBearing(parseInt(status.bearing));
 
+			$('#magnet_x').html(status.magnet_x);
+			$('#magnet_y').html(status.magnet_y);
+			$('#magnet_z').html(status.magnet_z);
+
+
 			setTimeout(update_status, 1000);
 			//data = $.parseJSON(data);
 			//$('#light_1_status').html(data.performed);
