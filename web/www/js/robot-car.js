@@ -153,11 +153,19 @@ $(document).ready(function () {
 			return;
 		}
 
+$.get('robovalues.json', function(status) {
+console.log(status)
+console.log(status.p1x);
+     //alert(data);
+/*
+});
+
+
 		$.post('robot.php', {action: 'local'}, function (data) {
 			data = parseResponse(data);
 			console.log(data);
-
-			var status = $.parseJSON(data.data)
+*/
+			//var status = $.parseJSON(data)
 			console.log(status);
 
 			var p1x = status.p1x;
