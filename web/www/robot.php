@@ -22,6 +22,9 @@ try
 
 	switch ($action)
 	{
+		case 'connect':
+			$response->performed = 'KuKuRobot001';
+			break;
 		case 'stop' :
 		case 'fwd' :
 		case 'rev' :
