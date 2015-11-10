@@ -1,0 +1,11 @@
+{
+  "name": "kuku-robot",
+  "description": "A robot controller using johnny-five.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/raspikuku",
+  "main": "node/web.js",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "johnny-five": "0.8.85"
+  }
+}
