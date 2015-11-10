@@ -71,3 +71,12 @@ body {
 	font-size: 1.5em;
 	color: yellowgreen;
 }
+
+.status_text {
+	color: yellowgreen;
+}
+
+#robot_direction {
+	font-size: 2em;
+	color: yellowgreen;
+}

@@ -98,12 +98,35 @@ var KuKuRobot = {
 
 	},
 
+	toggleLight: function (num, status) {
+		this.sendRequest({action: 'light', num: num, status: status});
+
+		return;
+			$.post(
+			'http://' + this.ip + '/robot.php',
+			{action: 'light', num: 1, status: status},
+			function (data) {
+				console.log(data);
+			}
+		);
+
+	},
+
 	poweroff: function () {
 		$.post('http://' + this.ip + '/robot.php',
 			{action: 'poweroff'},
 			function (data) {
 				console.log(data);
 			});
+
+	},
+
+	sendRequest: function(command) {
+		$.post('http://' + this.ip + '/robot.php',
+				command,
+				function (data) {
+					console.log(data);
+				});
 
 	}
 };

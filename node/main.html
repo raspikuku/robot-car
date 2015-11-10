@@ -36,37 +36,20 @@
 	<h4>KuKuRobot</h4>
 
 	<div class="row">
-		<div class="col-md-12">
-			<form class="form-inline">
-				Status: <span id="robot_status">OFFLINE</span>
-			<label for="robot_ip">IP</label><input id="robot_ip" value="192.168.0.102" />
-			<button class="btn btn-default btn-sm" id="robot_connect">Connect</button>
-			</form>
-		</div>
-	</div>
-
-
-	<div class="row">
-		<div class="col-xs-5" id="container_cam">
+		<div class="col-xs-4" id="container_cam">
 			<!--
 			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
 			-->
+			<img src="http://192.168.0.102:8081/?action=stream" width="320" height="240" />
 			<div id="sld_cam_hor"></div>
 		</div>
 		<div class="col-xs-1">
-			<div style="height: 321px;" id="sld_cam_ver"></div>
-		</div>
-		<div class="col-xs-1">
 			<button class="btn btn-default" id="cam_center">Center</button>
-			<button class="btn btn-default" id="ping_dist">DPing: <span id="radar_dist"></span></button>
-
-			<button class="btn btn-default" id="radar_sweep">Radar</button>
-			<button class="btn btn-default" id="light_1">Light 1:  <span id="light_1_status">OFF</span></button>
-			<button class="btn btn-default" id="show_clock">Clock</button>
-			<button class="btn btn-default" id="update_status">Status <span id="update_status_status">OFF</span></button>
-			<button class="btn btn-default" id="local_control">Local <span id="local_control_status">OFF</span></button>
+			<br />
+			<br />
+			<div style="height: 300px;" id="sld_cam_ver"></div>
 		</div>
-		<div class="col-xs-5" id="container_radar">
+		<div class="col-xs-4" id="container_radar">
 			<div id="radar">
 				<div id="rad"></div>
 
@@ -93,77 +76,97 @@
 				<div id="obj-1-100" class="obj" data-x="0" data-y="0"></div>
 
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">
 
-			<div id="robot_direction">nn</div>
-			<textarea class="form-control" style="background:#222; color:#00ff00;" rows="8" id="inData"></textarea>
+			<button class="btn btn-default" id="radar_sweep">Radar</button>
+			<button class="btn btn-default" id="ping_dist">DPing: <span id="radar_dist"></span></button>
 
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-3">
 			<img src="/img/windrose_kuku3.svg" id="windrose" width="250" height="250" />
+			<br />
 			<span id="bearing" class="status_num">0</span>
 			<span id="magnet_x" class="status_num">0</span>
 			<span id="magnet_y" class="status_num">0</span>
 			<span id="magnet_z" class="status_num">0</span>
+
 			<div id="sld_windrose"></div>
 
-			<button id="clear_console" class="btn btn-default">Clr</button>
-			<button class="btn btn-danger" id="poweroff">Power OFF</button>
 		</div>
 	</div>
-
-
-
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-xs-4">
+			<form class="form-inline">
+				<label for="robot_ip">IP</label>
+				<input id="robot_ip" value="192.168.0.102" />
+				<button class="btn btn-default btn-sm" id="robot_connect">Connect</button>
+			</form>
+
+			<textarea class="form-control" style="background:#222; color:#00ff00;" rows="8" id="inData"></textarea>
+			<button id="clear_console" class="btn btn-default">Clr</button>
+
+		</div>
+		<div class="col-xs-4">
+
+			<button class="btn btn-default" id="show_clock">Clock</button>
+			<button class="btn btn-default" id="update_status">
+				Status <span id="update_status_status">OFF</span>
+			</button>
+			<button class="btn btn-danger" id="poweroff">Power OFF</button>
+		</div>
+		<div class="col-xs-4">
+			Robot: <span id="robot_status" class="status_text">OFFLINE</span>
+			<div id="robot_direction">nn</div>
+			Light 1: <span id="light_1_status" class="status_text">nn</span>
 
 			<div id="p1">0</div>
 			<div id="p2">0</div>
-
+		</div>
 	</div>
-</div>
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery-ui-slider-pips.js"></script>
-<script src="js/robot-car.js"></script>
-<script src="js/jQueryRotate.js"></script>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
- -->
-<!-- Include all compiled plugins (below), or include individual files as needed
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
--->
-<script src="/socket.io/socket.io.js"></script>
-<script>
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/jquery-ui-slider-pips.js"></script>
+	<script src="js/robot-car.js"></script>
+	<script src="js/jQueryRotate.js"></script>
 
-	var socket = io.connect('http://localhost');
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	 -->
+	<!-- Include all compiled plugins (below), or include individual files as needed
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	-->
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
 
-	socket.on('news', function (data) {
-		console.log(data);
-	});
+		var socket = io.connect('http://localhost');
 
-	socket.on('sensor1', function (data) {
-		p1 = data.raw;
-		KuKuRobot.processPot(1, data.raw);
-		processSensor(1, data.raw);
-	});
+		socket.on('news', function (data) {
+			console.log(data);
+		});
 
-	socket.on('sensor2', function (data) {
-		p2 = data.raw;
-		KuKuRobot.processPot(1, data.raw);
-		processSensor(2, data.raw);
-	});
+		socket.on('sensor1', function (data) {
+			p1 = data.raw;
+			KuKuRobot.processPot(1, data.raw);
+			processSensor(1, data.raw);
+		});
 
-	var robot_direction = false;
-	var p1, p2;
+		socket.on('sensor2', function (data) {
+			p2 = data.raw;
+			KuKuRobot.processPot(2, data.raw);
+			processSensor(2, data.raw);
+		});
 
-	function processSensor(num, value) {
-	}
+		socket.on('btnLight', function (data) {
+			KuKuRobot.toggleLight(1, data.status);
+			$('#light_1_status').html(data.status ? 'ON' : 'OFF');
+		});
 
-</script>
+		var robot_direction = false;
+		var p1, p2;
+
+		function processSensor(num, value) {
+		}
+
+	</script>
 </body>
 </html>

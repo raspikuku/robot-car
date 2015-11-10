@@ -2,25 +2,31 @@ var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
 	fs = require('fs'),
 	five = require("johnny-five"),
-	board,
+	board = new five.Board(),
 		sensor1,
-		sensor2
+		sensor2,
+		btnLight,
+		ledLight,
+		led_1_status = 0
 		;
 
 
-board = new five.Board();
+//board = new five.Board();
 
 board.on("ready", function () {
 
 	sensor1 = new five.Sensor({
 		pin : "A0",
-		freq: 200
+		freq: 100
 	});
 
 	sensor2 = new five.Sensor({
 		pin : "A1",
-		freq: 200
+		freq: 100
 	});
+
+	btnLight = new five.Button(2);
+	ledLight = new five.Led(8);
 
 });
 
@@ -73,6 +79,18 @@ io.sockets.on('connection', function (socket) {
 		});
 		sensor2.on("data", function () {
 			socket.emit('sensor2', {raw: this.raw});
+		});
+		btnLight.on("down", function(){
+			if(led_1_status) {
+				led_1_status = 0;
+				ledLight.off();
+			}
+			else {
+				led_1_status = 1;
+				ledLight.on();
+			}
+
+			socket.emit('btnLight', {status: led_1_status});
 		});
 	}
 });
