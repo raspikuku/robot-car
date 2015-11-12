@@ -17,12 +17,12 @@ board.on("ready", function () {
 
 	sensor1 = new five.Sensor({
 		pin : "A0",
-		freq: 100
+		freq: 1000
 	});
 
 	sensor2 = new five.Sensor({
 		pin : "A1",
-		freq: 100
+		freq: 1000
 	});
 
 	btnLight = new five.Button(2);
@@ -52,7 +52,7 @@ function handler(req, res) {
 
 	var fileName;
 
-	if (ext == 'css' || ext == 'js' || ext == 'woff2' || ext == 'woff' || ext == 'ttf' || ext == 'svg') {
+	if (ext == 'css' || ext == 'js' || ext == 'woff2' || ext == 'woff' || ext == 'ttf' || ext == 'svg' || ext == 'jpg' || ext == 'png') {
 		fileName = req.url;
 	} else {
 		fileName = '/main.html';

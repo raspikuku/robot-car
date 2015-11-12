@@ -1,6 +1,9 @@
 body {
 	background-color: #272727;
+	color: yellowgreen;
+	font-family: monospace;
 }
+
 .btn-control {
 	height: 5em;
 }
@@ -31,14 +34,18 @@ body {
 }
 
 #sld_cam_hor {
-	margin-top: 30px;
+	margin-top: 10px;
+}
+
+#sld_cam_ver {
+	height: 220px;
 }
 
 #radar{
 	position:relative;
 	width:321px;
 	height:321px;
-	background:#222 url(../img/radar.png);
+	background:#222 url(/img/radar.png);
 	border-radius:320px;
 	overflow:hidden;
 }
@@ -47,7 +54,7 @@ body {
 	position:absolute;
 	width:321px;
 	height:321px;
-	background:url(../img/rad.png);
+	background:url(/img/rad.png);
 }
 
 .obj{
@@ -69,14 +76,31 @@ body {
 
 .status_num {
 	font-size: 1.5em;
-	color: yellowgreen;
+	color: #00ff00;
 }
 
 .status_text {
-	color: yellowgreen;
+	color: #00ff00;
 }
 
 #robot_direction {
 	font-size: 2em;
-	color: yellowgreen;
+	color: #00ff00;
+}
+
+#robot_ip {
+	background-color: #0f0f0f;
+	color: #00ff00;
+}
+
+.ui-slider {
+	background-color : #0f0f0f;
+}
+
+.ui-state-default, .ui-widget-content {
+	background-color : #0f0f0f;
+}
+
+.btn:hover, button:active {
+	color: #fff;
 }

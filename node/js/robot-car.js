@@ -2,148 +2,16 @@
  * Created by elkuku on 30.09.15.
  */
 
-var KuKuRobot = {
-	connected : false,
-	robot_name: 'unnamed',
-	ip        : '',
-	direction : '',
-
-	getStatus: function () {
-		return this.connected + ' : ' + this.robot_name;
-	},
-
-	connect: function (ip) {
-		var _this = this;
-		$.post('http://' + ip + '/robot.php', {action: 'connect'}, function (data) {
-				data = $.parseJSON(data);
-
-				$("#robot_status").html(data.performed);
-				$("#inData").append("connected to " + data.performed + "\r");
-
-				_this.robot_name = data.performed;
-				_this.ip = ip;
-
-				_this.connected = true;
-			})
-			.fail(function () {
-				alert("error connecting to the robot");
-				$("#inData").append("ERROR\r");
-			});
-	},
-
-	isConnected: function () {
-		return this.connected;
-	},
-
-	disconnect: function () {
-		this.connected = false;
-		this.robot_name = 'unnamed';
-	},
-
-	processPot: function (num, value) {
-		if (false == this.isConnected()) {
-			return;
-		}
-
-		//console.log("Incoming sensor data:", num, value);
-		//$("#inData").append("Incoming sensor data:" + num + ': ' + value + "\r");
-		//$("#inData").animate({scrollTop: $("#inData")[0].scrollHeight - $("#inData").height()}, 200);
-		//var val = parseInt(value / 1023 * 100);
-		//val = 100 - val;
-		//console.log(val);
-
-		$('#p' + num).html(value);
-
-		var lr_mid = 470;
-		var ud_mid = 330;
-
-		var dir;
-
-		if (p1 > lr_mid + 200) {
-			dir = 'right';
-		}
-		else if (p1 < lr_mid - 200) {
-			dir = 'left';
-		}
-		else if (p2 > ud_mid + 100) {
-			dir = 'rev';
-		}
-		else if (p2 < ud_mid - 100) {
-			dir = 'fwd';
-		}
-		else {
-			dir = 'stop';
-		}
-
-		if (dir != this.direction) {
-			this.direction = dir;
-			$('#robot_direction').html(this.direction);
-			$.post('http://' + this.ip + '/robot.php',
-				{action: this.direction},
-				function (data) {
-					console.log(data);
-				});
-		}
-
-
-		/*
-		 var dir = 1 == num ? 'hor' : 'ver';
-		 $.post('http://192.168.0.102/robot.php', {
-		 action: 'cam', direction: dir, position: val
-		 }, function (data) {
-		 console.log(data);
-		 });
-
-		 */
-
-	},
-
-	toggleLight: function (num, status) {
-		this.sendRequest({action: 'light', num: num, status: status});
-
-		return;
-			$.post(
-			'http://' + this.ip + '/robot.php',
-			{action: 'light', num: 1, status: status},
-			function (data) {
-				console.log(data);
-			}
-		);
-
-	},
-
-	poweroff: function () {
-		$.post('http://' + this.ip + '/robot.php',
-			{action: 'poweroff'},
-			function (data) {
-				console.log(data);
-			});
-
-	},
-
-	sendRequest: function(command) {
-		$.post('http://' + this.ip + '/robot.php',
-				command,
-				function (data) {
-					console.log(data);
-				});
-
-	}
-};
 
 $(document).ready(function () {
-	$('#robot_connect').click(function () {
-		var status = $("#inData");
+	KuKuRobot.div_status = $("#inData");
 
+	$('#robot_connect').click(function () {
 		if (KuKuRobot.isConnected()) {
 			KuKuRobot.disconnect();
-			$("#robot_status").html('OFFLINE');
-			status.prepend("disconnect\r");
 
 			return false;
 		}
-
-		status.prepend("Connecting...\r");
 
 		var ip = $('#robot_ip').val();
 
@@ -159,9 +27,11 @@ $(document).ready(function () {
 	});
 
 	$('#poweroff').click(function () {
-		$('#inData').prepend('<p class="error">Sending POWEROFF...</p>');
 		KuKuRobot.poweroff();
 	});
+
+
+
 
 
 	$("#sld_cam_hor").slider({
@@ -189,7 +59,7 @@ $(document).ready(function () {
 		}
 	}).slider("pips", {
 		step: 25,
-		rest: 'label',
+		rest: 'label'//,
 		//labels: ['-90', '-45', '0', '45', '90']
 	});
 
@@ -369,4 +239,50 @@ $(document).ready(function () {
 
 		return data;
 	}
+});
+
+
+function setRadarObjects() {
+	var $obj = $('.obj'),
+		rad = 160.5; //   = 321/2
+
+	$obj.each(function () {
+		var data = $(this).data(),
+			pos = {X: data.x, Y: data.y},
+			getAtan = Math.atan2(pos.X - rad, pos.Y - rad),
+			getDeg = ~~(-getAtan / (Math.PI / 180) + 180);
+		$(this).css({left: pos.X, top: pos.Y}).attr('data-atDeg', getDeg);
+	});
+}
+
+$(function () {
+
+	var $rad = $('#rad'),
+		$obj = $('.obj'),
+		deg = 0,
+		rad = 160.5; //   = 321/2
+
+	$obj.each(function () {
+		var data = $(this).data(),
+			pos = {X: data.x, Y: data.y},
+			getAtan = Math.atan2(pos.X - rad, pos.Y - rad),
+			getDeg = ~~(-getAtan / (Math.PI / 180) + 180);
+		$(this).css({left: pos.X, top: pos.Y}).attr('data-atDeg', getDeg);
+	});
+
+	(function rotate() {
+		$rad.css({transform: 'rotate(' + deg + 'deg)'});
+		$('[data-atDeg=' + deg + ']').stop().fadeTo(0, 1).fadeTo(1700, 0.2);
+
+		// LOOP
+		setTimeout(function () {
+			deg = ++deg % 360;
+			/*
+			 if (deg == 90) {
+			 deg = 270;
+			 }
+			 */
+			rotate();
+		}, 10);
+	})();
 });
