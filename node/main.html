@@ -9,44 +9,18 @@
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/jquery-ui.css" rel="stylesheet">
-	<link href="css/jquery-ui-slider-pips.css" rel="stylesheet" />
+	<link href="css/jquery-ui-slider-pips.css" rel="stylesheet">
 
 	<link href="css/robot-car.css" rel="stylesheet">
-
-	<!-- Bootstrap -->
-	<!-- Latest compiled and minified CSS
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	 -->
-
-	<!-- Optional theme
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-	-->
-
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file://
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	-->
-	<!--
-  <![endif]-->
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-4" id="container_cam">
-			<!--
-			<img src="http://<?= $_SERVER['SERVER_ADDR'] ?>:8081/?action=stream" width="320" height="240" />
-			-->
-			<img src="http://192.168.0.102:8081/?action=stream" width="320" height="240" />
-
+			<img id="camera" src="" width="320" height="240" />
 			<div id="sld_cam_hor"></div>
 		</div>
 		<div class="col-xs-1">
-			<button class="btn btn-sm" id="cam_center">Center</button>
-			<br />
-			<br />
-
 			<div style="" id="sld_cam_ver"></div>
 		</div>
 		<div class="col-xs-4" id="container_radar">
@@ -76,23 +50,16 @@
 				<div id="obj-1-100" class="obj" data-x="0" data-y="0"></div>
 
 			</div>
-
-			<button class="btn btn-sm" id="radar_sweep">Radar</button>
-			<button class="btn btn-sm" id="ping_dist">DPing: </button><span id="radar_dist"></span>
-
 		</div>
 		<div class="col-xs-3">
 			<img src="/img/windrose_kuku3.svg" id="windrose" width="300" height="300" />
 			<br />
 			<div id="bearing" class="status_num text-center">0 &deg;</div>
-
-			<div id="sld_windrose"></div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-4">
 			<form class="form-inline">
-				<label for="robot_ip">IP</label>&nbsp;
 				<input id="robot_ip" value="192.168.0.102" class="form-control" />
 				<button class="btn btn-sm" id="robot_connect">Connect</button>
 				<button class="btn btn-sm btn-danger" id="poweroff">OFF</button>
@@ -103,12 +70,6 @@
 
 		</div>
 		<div class="col-xs-4">
-
-			<button class="btn btn-sm" id="show_clock">Clock</button>
-			<button class="btn btn-sm" id="update_status">
-				Status <span id="update_status_status">OFF</span>
-			</button>
-			<br />
 			Robot: <span id="robot_status" class="status_text">OFFLINE</span>
 
 			<div id="robot_direction">---</div>
@@ -123,9 +84,21 @@
 			Mag Z <span id="magnet_z" class="status_text">0</span><br />
 		</div>
 	</div>
+
+
+
+	<button class="btn btn-sm" id="show_clock">Clock</button>
+	<button class="btn btn-sm" id="cam_center">Center</button>
+
+	<button class="btn btn-sm" id="radar_sweep">Radar</button>
+	<button class="btn btn-sm" id="ping_dist">DPing: </button><span id="radar_dist"></span>
+
+
+
+
 	<div class="text-right">
 		<h4>KuKuRobot</h4>
-		made 2015 by <a href="https://github.com/elkuku">elkuku</a> =;)
+		made 2015 by <a href="https://github.com/raspikuku">raspikuku</a> =;)
 	</div>
 </div>
 <script src="js/jquery-2.1.4.min.js"></script>
@@ -135,12 +108,6 @@
 <script src="js/kuku-robot.js"></script>
 <script src="js/robot-car.js"></script>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
- -->
-<!-- Include all compiled plugins (below), or include individual files as needed
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
--->
 <script src="/socket.io/socket.io.js"></script>
 <script>
 

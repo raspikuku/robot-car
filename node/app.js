@@ -17,12 +17,12 @@ board.on("ready", function () {
 
 	sensor1 = new five.Sensor({
 		pin : "A0",
-		freq: 1000
+		freq: 100
 	});
 
 	sensor2 = new five.Sensor({
 		pin : "A1",
-		freq: 1000
+		freq: 100
 	});
 
 	btnLight = new five.Button(2);

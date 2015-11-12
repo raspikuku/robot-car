@@ -8,14 +8,12 @@ var KuKuRobot = {
 	ip        : '',
 	direction : '',
 
-	div_status: '',
-
 	connect: function (ip) {
 		this.log('Connecting...');
 		var _this = this;
 
 		$.post(
-			'http://' + ip + '/robot.php',
+				'http://' + ip + '/robot.php',
 			{action: 'connect'},
 			function (data) {
 				data = $.parseJSON(data);
@@ -28,10 +26,13 @@ var KuKuRobot = {
 				_this.robot_name = data.performed;
 				_this.ip = ip;
 				_this.connected = true;
+				_this.start_display();
+				_this.update_status();
+				$('#camera').attr('src', 'http://' + ip + ':8081/?action=stream');
 			})
 
 			.fail(function () {
-					alert("Error connecting to the robot");
+					alert('Error connecting to the robot');
 					_this.log('ERROR');
 				}
 			);
@@ -40,8 +41,7 @@ var KuKuRobot = {
 	disconnect: function () {
 		this.connected = false;
 		this.robot_name = 'unnamed';
-		$("#robot_status").html('OFFLINE');
-		$('#robot_connect').html('Connect');
+		this.clear_display();
 		this.log("Disconnected");
 	},
 
@@ -103,6 +103,58 @@ var KuKuRobot = {
 
 	},
 
+	clear_display: function(){
+		$("#robot_status").html('OFFLINE');
+		$('#robot_connect').html('Connect');
+		$('#robot_direction').html('---');
+		$('#light_1_status').html('-');
+		$('#magnet_x').html('-');
+		$('#magnet_y').html('-');
+		$('#magnet_z').html('-');
+		$("#windrose").rotate(0);
+		$('#bearing').html('0 &deg;');
+		$('#camera').attr('src', '');
+	},
+
+	start_display: function(){
+		$('#robot_direction').html('');
+		$('#light_1_status').html('OFF');
+		$('#magnet_x').html('0');
+		$('#magnet_y').html('0');
+		$('#magnet_z').html('0');
+	},
+
+	update_status: function () {
+		if (false == this.connected) {
+			return;
+		}
+
+		var _this = this;
+
+		$.post('http://' + this.ip + '/robot.php', {action: 'status'}, function (data) {
+			data = $.parseJSON(data);
+
+			var status = $.parseJSON(data.data);
+
+			_this.setBearing(parseInt(status.bearing));
+
+			$('#magnet_x').html(status.magnet_x);
+			$('#magnet_y').html(status.magnet_y);
+			$('#magnet_z').html(status.magnet_z);
+
+			setTimeout(_this.update_status(), 1000);
+		});
+	},
+
+	setBearing: function(degrees) {
+		$("#windrose").rotate(360 - degrees);
+		$('#bearing').html(degrees + ' &deg;');
+	},
+
+	moveCam: function (direction, position) {
+		this.sendRequest({action: 'cam', direction: direction, position: position});
+	},
+
 	toggleLight: function (num, status) {
 		this.sendRequest({action: 'light', num: num, status: status});
 	},
@@ -116,7 +168,7 @@ var KuKuRobot = {
 		$.post('http://' + this.ip + '/robot.php',
 			command,
 			function (data) {
-				console.log(data);
+				//console.log(data);
 			}
 		);
 	},
@@ -126,6 +178,6 @@ var KuKuRobot = {
 	},
 
 	log: function (message) {
-		this.div_status.prepend(message + "\r");
+		$("#inData").prepend(message + "\r");
 	}
 };
