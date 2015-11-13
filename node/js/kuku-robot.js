@@ -6,6 +6,8 @@ var KuKuRobot = {
 	connected : false,
 	robot_name: 'unnamed',
 	ip        : '',
+	p1: 0,
+	p2: 0,
 	direction : '',
 
 	connect: function (ip) {
@@ -49,35 +51,26 @@ var KuKuRobot = {
 		return this.connected;
 	},
 
-	processPot: function (num, value) {
+	setDirection: function () {
 		if (false == this.isConnected()) {
 			return;
 		}
-
-		//console.log("Incoming sensor data:", num, value);
-		//$("#inData").append("Incoming sensor data:" + num + ': ' + value + "\r");
-		//$("#inData").animate({scrollTop: $("#inData")[0].scrollHeight - $("#inData").height()}, 200);
-		//var val = parseInt(value / 1023 * 100);
-		//val = 100 - val;
-		//console.log(val);
-
-		$('#p' + num).html(value);
 
 		var lr_mid = 470;
 		var ud_mid = 330;
 
 		var dir;
 
-		if (p2 > lr_mid + 200) {
+		if (this.p2 > lr_mid + 200) {
 			dir = 'right';
 		}
-		else if (p2 < lr_mid - 200) {
+		else if (this.p2 < lr_mid - 200) {
 			dir = 'left';
 		}
-		else if (p1 > ud_mid + 100) {
+		else if (this.p1 > ud_mid + 100) {
 			dir = 'rev';
 		}
-		else if (p1 < ud_mid - 100) {
+		else if (this.p1 < ud_mid - 100) {
 			dir = 'fwd';
 		}
 		else {
@@ -89,18 +82,18 @@ var KuKuRobot = {
 			$('#robot_direction').html(this.direction);
 			this.sendRequest({action: this.direction});
 		}
+	},
 
+	setCam: function(direction, value) {
+		var val = parseInt(value / 1023 * 100);
+		val = 100 - val;
 
-		/*
-		 var dir = 1 == num ? 'hor' : 'ver';
-		 $.post('http://192.168.0.102/robot.php', {
-		 action: 'cam', direction: dir, position: val
-		 }, function (data) {
-		 console.log(data);
-		 });
-
-		 */
-
+		var dir = 1 == direction ? 'hor' : 'ver';
+		$.post('http://192.168.0.102/robot.php', {
+			action: 'cam', direction: dir, position: val
+		}, function (data) {
+			//console.log(data);
+		});
 	},
 
 	clear_display: function(){
@@ -108,6 +101,8 @@ var KuKuRobot = {
 		$('#robot_connect').html('Connect');
 		$('#robot_direction').html('---');
 		$('#light_1_status').html('-');
+		$('#p1').html('-');
+		$('#p2').html('-');
 		$('#magnet_x').html('-');
 		$('#magnet_y').html('-');
 		$('#magnet_z').html('-');
@@ -119,6 +114,8 @@ var KuKuRobot = {
 	start_display: function(){
 		$('#robot_direction').html('');
 		$('#light_1_status').html('OFF');
+		$('#p1').html('0');
+		$('#p2').html('0');
 		$('#magnet_x').html('0');
 		$('#magnet_y').html('0');
 		$('#magnet_z').html('0');
@@ -160,7 +157,8 @@ var KuKuRobot = {
 	},
 
 	showClock: function () {
-		this.sendRequest({action: 'show_clock'});
+		data = this.sendRequest({action: 'show_clock'});
+		console.log('uh'+data);
 	},
 
 	poweroff: function () {
@@ -172,7 +170,6 @@ var KuKuRobot = {
 		$.post('http://' + this.ip + '/robot.php',
 			command,
 			function (data) {
-				//console.log(data);
 			}
 		);
 	},

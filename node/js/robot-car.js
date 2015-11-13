@@ -65,6 +65,19 @@ $(document).ready(function () {
 
 
 
+
+
+	$('#windrose_rose').click(function () {
+		$('#windrose').attr('src', '/img/windrose_kuku3.svg');
+
+	});
+
+	$('#windrose_car').click(function () {
+		$('#windrose').attr('src', '/img/top-car-vector-coloring.svg');
+
+	});
+
+
 	$('#cam_center').click(function () {
 		$("#sld_cam_hor").slider("option", "value", 50);
 		$("#sld_cam_ver").slider("option", "value", 50);

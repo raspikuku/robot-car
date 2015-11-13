@@ -54,7 +54,9 @@ function handler(req, res) {
 
 	var fileName;
 
-	if (ext == 'css' || ext == 'js' || ext == 'woff2' || ext == 'woff' || ext == 'ttf' || ext == 'svg' || ext == 'jpg' || ext == 'png') {
+	if (ext == 'css' || ext == 'js'
+		|| ext == 'woff2' || ext == 'woff' || ext == 'ttf'
+		|| ext == 'svg' || ext == 'jpg' || ext == 'png') {
 		fileName = req.url;
 	} else {
 		fileName = '/main.html';
