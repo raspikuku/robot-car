@@ -7,6 +7,7 @@ var app = require('http').createServer(handler),
 		sensor2,
 		btnLight,
 		ledLight,
+		btnClock,
 		led_1_status = 0
 		;
 
@@ -28,6 +29,7 @@ board.on("ready", function () {
 	btnLight = new five.Button(2);
 	ledLight = new five.Led(8);
 
+	btnClock = new five.Button(3);
 });
 
 // make web server listen
@@ -91,6 +93,9 @@ io.sockets.on('connection', function (socket) {
 			}
 
 			socket.emit('btnLight', {status: led_1_status});
+		});
+		btnClock.on("down", function(){
+			socket.emit('btnClock');
 		});
 	}
 });

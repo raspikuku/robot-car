@@ -68,16 +68,16 @@ var KuKuRobot = {
 
 		var dir;
 
-		if (p1 > lr_mid + 200) {
+		if (p2 > lr_mid + 200) {
 			dir = 'right';
 		}
-		else if (p1 < lr_mid - 200) {
+		else if (p2 < lr_mid - 200) {
 			dir = 'left';
 		}
-		else if (p2 > ud_mid + 100) {
+		else if (p1 > ud_mid + 100) {
 			dir = 'rev';
 		}
-		else if (p2 < ud_mid - 100) {
+		else if (p1 < ud_mid - 100) {
 			dir = 'fwd';
 		}
 		else {
@@ -157,6 +157,10 @@ var KuKuRobot = {
 
 	toggleLight: function (num, status) {
 		this.sendRequest({action: 'light', num: num, status: status});
+	},
+
+	showClock: function () {
+		this.sendRequest({action: 'show_clock'});
 	},
 
 	poweroff: function () {
