@@ -33,7 +33,7 @@ $(document).ready(function () {
 		return false;
 	});
 
-	$("#sld_cam_hor").slider({
+	$('#sld_cam_hor').slider({
 		value : 50,
 		slide : function (event, ui) {
 			KuKuRobot.moveCam('hor', 100 - ui.value)
@@ -41,22 +41,22 @@ $(document).ready(function () {
 		change: function (event, ui) {
 			KuKuRobot.moveCam('hor', 100 - ui.value)
 		}
-	}).slider("pips", {
+	}).slider('pips', {
 		step: 25,
 		rest: 'label'//,
 		//labels: ['-90', '-45', '0', '45', '90']
 	});
 
-	$("#sld_cam_ver").slider({
+	$('#sld_cam_ver').slider({
 		value      : 50,
-		orientation: "vertical",
+		orientation: 'vertical',
 		slide      : function (event, ui) {
 			KuKuRobot.moveCam('ver', 100 - ui.value)
 		},
 		change     : function (event, ui) {
 			KuKuRobot.moveCam('ver', 100 - ui.value)
 		}
-	}).slider("pips", {
+	}).slider('pips', {
 		step: 25,
 		rest: 'label'//,
 		//labels: ['-90', '-45', '0', '45', '90']
@@ -73,30 +73,17 @@ $(document).ready(function () {
 	});
 
 	$('#windrose_car').click(function () {
-		$('#windrose').attr('src', '/img/top-car-vector-coloring.svg');
+		//$('#windrose').attr('src', '/img/top-car-vector-coloring.svg');
+		$('#windrose').attr('src', '/img/car-01-green.svg');
 
 	});
 
 
-	$('#cam_center').click(function () {
-		$("#sld_cam_hor").slider("option", "value", 50);
-		$("#sld_cam_ver").slider("option", "value", 50);
-	});
 
 
 
 
 
-
-
-
-	$('#show_clock').click(function () {
-		$.post('robot.php', {action: 'show_clock'}, function (data) {
-			parseResponse(data);
-			//data = $.parseJSON(data);
-			//$('#light_1_status').html(data.performed);
-		});
-	});
 
 	$('#ping_dist').click(function () {
 		$.post('robot.php', {action: 'ping_dist'}, function (data) {
@@ -166,7 +153,7 @@ $(document).ready(function () {
 		data = $.parseJSON(data);
 
 		var d = new Date();
-		var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+		var time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
 		if (data.performed) {
 			$('#debugConsole').prepend('<p>' + time + ' ' + data.performed + '</p>');
