@@ -4,8 +4,8 @@ import sys
 import time
 from tm1637 import TM1637
 
-hour = sys.argv[1]
-minute = sys.argv[2]
+hour = int(sys.argv[1])
+minute = int(sys.argv[2])
 
 pin_clk = 26
 pin_dio = 16
@@ -19,21 +19,25 @@ if hour < 10:
   Display.Show1(1, hour)
 else:
   d = 0
-  for n in hour:
+  for n in str(hour):
     Display.Show1(d, int(n))
     d = d + 1
 
-d = 2
-for n in minute:
-  Display.Show1(d, int(n))
-  d = d + 1
+if minute < 10:
+  Display.Show1(2, 0)
+  Display.Show1(3, minute)
+else:
+  d = 2
+  for n in str(minute):
+    Display.Show1(d, int(n))
+    d = d + 1
 
-for n in range(0, 10):
+for n in range(0, 5):
   Display.ShowDoublepoint(True)
-  time.sleep(1)
+  time.sleep(0.5)
   Display.ShowDoublepoint(False)
-  time.sleep(1)
+  time.sleep(0.5)
 
 Display.Clear()
 
-print hour + ':' + minute
+print str(hour) + ':' + str(minute)
