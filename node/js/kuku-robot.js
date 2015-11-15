@@ -84,18 +84,6 @@ var KuKuRobot = {
 		}
 	},
 
-	setCam: function(direction, value) {
-		var val = parseInt(value / 1023 * 100);
-		val = 100 - val;
-
-		var dir = 1 == direction ? 'hor' : 'ver';
-		$.post('http://192.168.0.102/robot.php', {
-			action: 'cam', direction: dir, position: val
-		}, function (data) {
-			//console.log(data);
-		});
-	},
-
 	clear_display: function(){
 		$("#robot_status").html('OFFLINE');
 		$('#robot_connect').html('Connect');
@@ -144,7 +132,7 @@ var KuKuRobot = {
 	},
 
 	setBearing: function(degrees) {
-		$("#windrose").rotate(360 - degrees);
+		$("#windrose").rotate(degrees);
 		$('#bearing').html(degrees + ' &deg;');
 	},
 

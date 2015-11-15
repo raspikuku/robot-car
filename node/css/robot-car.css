@@ -1,6 +1,6 @@
 body {
 	background-color: #272727;
-	color: yellowgreen;
+	color: #747474;
 	font-family: monospace;
 }
 
@@ -84,7 +84,7 @@ body {
 	color: #00ff00;
 }
 
-#robot_direction {
+.status_text_lg {
 	font-size: 2em;
 	color: #00ff00;
 }
