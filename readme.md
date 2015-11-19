@@ -1,34 +1,42 @@
 ## RobotCar Project
 
-### Solution #1 - Web server, interface in PHP and JS
+### Solution #1 - Wifi - Web server, interface in PHP and JS
 
-* Install a web server on the Pi and point the root to the repos folder `www`
+* Install a web server on the Pi and point it to the repos folder `web/www`
 * Open the Pis IP on any device that supports web browsing
 * Controls are implemented as click(tap)able buttons
 
-### Solution #2 - node.js server, jhonny-five, socket.io
+### Solution #2 - Wifi - node.js server, Browser interface in HTML and JS
 
 This one is meant to work with an Arduino containing pots and buttons connected to a PC acting as a remote control.
 
-### Istallation
+* Install a web server on the Pi and point it to the repos folder `web/www`
+
+#### Istallation
 
 `npm install`
 
-### Usage
+#### Usage
 
 `node node/app.js`
 
-Open your browser on port 4000
+Open your browser at http://localhost:4000
+
+### Solution #3 - XBee
+
+TBD
 
 ### General setup
 
 #### Servos
 
-https://github.com/richardghirst/PiBits/tree/master/ServoBlaster
+Install https://github.com/richardghirst/PiBits/tree/master/ServoBlaster
+
+Install it globally and make it run on startup:
 
 `sudo make install`
 
-edit `/etc/init.d/servoblaster`
+Edit `/etc/init.d/servoblaster`
 
 `--p1pins=21,23`
 
