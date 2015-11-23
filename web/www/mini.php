@@ -13,10 +13,10 @@
 	<input name="duration" value="1" />
 	<br />
 
-	<button name="fwd" value="Forward" />
-	<button name="rev" value="Reverse" />
-	<button name="left" value="Left" />
-	<button name="right" value="Right" />
+	<button name="action" value="fwd">Forward</button>
+	<button name="action" value="rev">Reverse</button>
+	<button name="action" value="left">Left</button>
+	<button name="action" value="right">Right</button>
 </form>
 
 </body>
