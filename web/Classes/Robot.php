@@ -238,6 +238,6 @@ class Robot
 	 */
 	public function setDuration($duration)
 	{
-		$this->duration = $duration * 1000;
+		$this->duration = $duration * 100000;
 	}
 }
