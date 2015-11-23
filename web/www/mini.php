@@ -49,9 +49,9 @@ catch (Exception $exception)
 
 <form action="mini.php" method="post">
 
-	<input name="duration" value="<?php echo $duration; ?>" />
-
-	<br />
+	<p>
+		Duration: <input name="duration" value="<?php echo $duration; ?>" /> 1/10 sec.
+	</p>
 
 	<button name="action" value="fwd">Forward</button>
 	<button name="action" value="rev">Reverse</button>
