@@ -2,7 +2,7 @@
 include '../Classes/Robot.php';
 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
-$duration = isset($_POST['duration']) ? intval($_POST['duration']) : 0;
+$duration = isset($_POST['duration']) ? intval($_POST['duration']) : 1;
 
 $performed = '';
 $error = '';
