@@ -1,28 +1,39 @@
 ## RobotCar Project
 
-### Solution #1 - Wifi - Web server, interface in PHP and JS
+### Solution #1 - Wifi - Web server, Browser interface in PHP, HTML and JS
 
-* Install a web server on the Pi and point it to the repos folder `web/www`
-* Open the Pis IP on any device that supports web browsing
+* Install a web server with support for PHP on the vehicle and point it to the repos folder `web/www`
+* Open the vehicles IP on any device that supports web browsing
 * Controls are implemented as click(tap)able buttons
+
+**Solution #1a - A dead simple web page - Meant as a first start, just for demo.**
+
+* Install a web server with support for PHP on the vehicle and point it to the repos folder `web/www-simple`
 
 ### Solution #2 - Wifi - node.js server, Browser interface in HTML and JS
 
 This one is meant to work with an Arduino containing pots and buttons connected to a PC acting as a remote control.
 
-* Install a web server on the Pi and point it to the repos folder `web/www`
+On the vehicle:
+* Install a web server and point it to the repos folder `web/www`
 
-#### Istallation
-
-`npm install`
-
-#### Usage
-
-`node node/app.js`
-
-Open your browser at http://localhost:4000
+On the control:
+* Install nodejs
+* Execute: `npm install` from the repo root
+* Start the server: `node node/app.js`
+* Open a browser at http://localhost:4000
 
 ### Solution #3 - XBee
+
+TBD
+
+Uh... f#ckng expensives :(
+
+### Solution #4 - RF 2.4 Ghz
+
+TBD
+
+### Solution #5 - RF 433 Mhz
 
 TBD
 
