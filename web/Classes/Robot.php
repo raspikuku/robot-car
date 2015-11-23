@@ -235,9 +235,13 @@ class Robot
 
 	/**
 	 * @param int $duration
+	 *
+	 * @return $this
 	 */
 	public function setDuration($duration)
 	{
 		$this->duration = $duration * 100000;
+
+		return $this;
 	}
 }

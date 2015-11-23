@@ -2,6 +2,7 @@
 include '../Classes/Robot.php';
 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
+$duration = isset($_POST['duration']) ? intval($_POST['duration']) : 0;
 
 $performed = '';
 $error = '';
@@ -15,7 +16,7 @@ try
 		case 'left' :
 		case 'right' :
 			$robot = new Robot;
-			$robot->setDuration(isset($_POST['duration']) ? intval($_POST['duration']) : 0);
+			$robot->setDuration($duration);
 			$robot->$action();
 			$performed = $action;
 			break;
@@ -37,14 +38,16 @@ catch (Exception $exception)
 </head>
 <body>
 
-<form action="mini.php" method="post">
-
+<div>
 	<?php
 	echo $performed;
 	echo $error;
 	?>
+</div>
 
-	<input name="duration" value="1" />
+<form action="mini.php" method="post">
+
+	<input name="duration" value="<?php echo $duration; ?>" />
 
 	<br />
 
