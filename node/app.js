@@ -16,9 +16,6 @@ var app = require('http').createServer(handler),
 		led_1_status = 0
 		;
 
-
-//board = new five.Board();
-
 board.on("ready", function () {
 
 	p1 = new five.Sensor({pin : 'A0', freq: 100});
@@ -32,11 +29,12 @@ board.on("ready", function () {
 	ledLight = new five.Led(8);
 
 	btnClock = new five.Button(3);
-	//btnCamCenter = new five.Button(4);
+
 	btnCamCenter = new five.Button({
 		pin: 4,
 		isPullup: true
 	});
+
 	//btnx = new five.Button(5);
 });
 
