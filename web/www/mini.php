@@ -38,6 +38,8 @@ catch (Exception $exception)
 </head>
 <body>
 
+<h1>Robot Car</h1>
+
 <div>
 	<?php
 	echo $performed;
