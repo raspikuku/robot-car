@@ -1,3 +1,32 @@
+<?php
+include '../Classes/Robot.php';
+
+$action = isset($_POST['action']) ? $_POST['action'] : '';
+
+$performed = '';
+$error = '';
+
+try
+{
+	switch ($action)
+	{
+		case 'fwd' :
+		case 'rev' :
+		case 'left' :
+		case 'right' :
+			$robot = new Robot;
+			$robot->setDuration(isset($_POST['duration']) ? intval($_POST['duration']) : 0);
+			$robot->$action();
+			$performed = $action;
+			break;
+	}
+}
+catch (Exception $exception)
+{
+	$error = $exception->getMessage();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +39,13 @@
 
 <form action="mini.php" method="post">
 
+	<?php
+	echo $performed;
+	echo $error;
+	?>
+
 	<input name="duration" value="1" />
+
 	<br />
 
 	<button name="action" value="fwd">Forward</button>
