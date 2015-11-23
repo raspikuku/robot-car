@@ -27,7 +27,7 @@ class Robot
 	 *
 	 * @var int
 	 */
-	public $sleepTime = 0; //300000;
+	private $duration = 0;
 
 	private $gpioCmd = '/usr/local/bin/gpio -g';
 
@@ -167,9 +167,9 @@ class Robot
 
 	private function sleep()
 	{
-		if ($this->sleepTime)
+		if ($this->duration)
 		{
-			usleep($this->sleepTime);
+			usleep($this->duration);
 			$this->stop();
 		}
 
@@ -231,5 +231,13 @@ class Robot
 		}
 
 		return $output;
+	}
+
+	/**
+	 * @param int $duration
+	 */
+	public function setDuration($duration)
+	{
+		$this->duration = $duration * 1000;
 	}
 }

@@ -30,6 +30,7 @@ try
 		case 'rev' :
 		case 'left' :
 		case 'right' :
+			$robot->setDuration(isset($_POST['duration']) ? intval($_POST['duration']) : 0);
 			$robot->$action();
 			$response->performed = $action;
 		break;
