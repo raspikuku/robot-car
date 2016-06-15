@@ -18,6 +18,7 @@ On the vehicle:
 * Install a web server and point it to the repos folder `web/www`
 
 On the control:
+* Install "Standard Firmate" to the Arduino. See: https://github.com/rwaldron/johnny-five/wiki/Getting-Started#trouble-shooting
 * Install nodejs
 * Execute: `npm install` from the repo root
 * Start the server: `node node/app.js`
@@ -36,6 +37,17 @@ TBD
 ### Solution #5 - RF 433 Mhz
 
 TBD
+
+* https://github.com/sui77/rc-switch
+* https://github.com/ninjablocks/433Utils
+
+OR...
+
+* http://www.airspayce.com/mikem/arduino/RadioHead/
+
+OR....
+
+* http://www.3bm.de/2013/11/01/kommunikation-zwischen-zwei-arduinos-mit-virtual-wire-und-433-mhz/
 
 ### General setup
 
