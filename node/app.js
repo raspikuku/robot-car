@@ -20,6 +20,7 @@ board.on("ready", function () {
 
 	p1 = new five.Sensor({pin : 'A0', freq: 100});
 	p2 = new five.Sensor({pin : 'A1', freq: 100});
+/*
 	p3 = new five.Sensor({pin : 'A2', freq: 100});
 	p4 = new five.Sensor({pin : 'A3', freq: 100});
 	p5 = new five.Sensor({pin : 'A4', freq: 100});
@@ -34,7 +35,7 @@ board.on("ready", function () {
 		pin: 4,
 		isPullup: true
 	});
-
+*/
 	//btnx = new five.Button(5);
 });
 
@@ -60,6 +61,16 @@ function handler(req, res) {
 
 	var fileName;
 
+	if ([
+			'css', 'js', 'woff2', 'woff', 'ttf', 'svg', 'jpg', 'png'
+		].indexOf(ext) >= 0) {
+		fileName = req.url;
+	}
+	else{
+		fileName = '/main.html';
+	}
+
+	/*
 	if (ext == 'css' || ext == 'js'
 		|| ext == 'woff2' || ext == 'woff' || ext == 'ttf'
 		|| ext == 'svg' || ext == 'jpg' || ext == 'png') {
@@ -67,6 +78,7 @@ function handler(req, res) {
 	} else {
 		fileName = '/main.html';
 	}
+	*/
 
 	fs.readFile(__dirname + fileName,
 		function (err, data) {
@@ -90,6 +102,7 @@ io.sockets.on('connection', function (socket) {
 		p2.on("data", function () {
 			socket.emit('p2', {raw: this.raw});
 		});
+/*
 		p3.on("data", function () {
 			socket.emit('p3', {raw: this.raw});
 		});
@@ -121,5 +134,6 @@ io.sockets.on('connection', function (socket) {
 			console.log('cam center');
 			socket.emit('btnCamCenter');
 		});
+*/
 	}
 });
